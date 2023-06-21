@@ -1,0 +1,328 @@
+/* =========== Google Fonts ============ */
+/* @import url("https://fonts.google.com/specimen/Playfair?preview.size=24"); */
+
+/* =============== Globals ============== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --blue: rgb(49, 49, 87);
+  --white: #fff;
+  --gray: #f5f5f5;
+  --black1: #222;
+  --black2: #999;
+}
+
+html {
+  min-height: 100vh;
+  background: rgb(241, 241, 245);
+  background-size: cover;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.container {
+  position: absolute;
+  width: 100%;
+}
+
+/* =============== Navigation ================ */
+.navigation {
+  position: fixed;
+  width: 300px;
+  height: 100%;
+  background: var(--blue);
+  border-left: 10px solid var(--blue);
+  transition: 0.5s;
+  overflow: hidden;
+}
+.navigation.active {
+  width: 80px;
+}
+
+.navigation ul {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.navigation ul li {
+  position: relative;
+  width: 100%;
+  list-style: none;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+}
+
+.navigation ul li:hover,
+.navigation ul li.hovered {
+  background-color: var(--white);
+}
+
+.navigation ul li:nth-child(1) {
+  margin-bottom: 40px;
+  pointer-events: none;
+}
+
+.navigation ul li a {
+  position: relative;
+  display: block;
+  width: 100%;
+  display: flex;
+  text-decoration: none;
+  color: var(--white);
+}
+.navigation ul li:hover a,
+.navigation ul li.hovered a {
+  color: var(--blue);
+}
+
+.navigation ul li a .icon {
+  position: relative;
+  display: block;
+  min-width: 60px;
+  height: 60px;
+  line-height: 55px;
+  text-align: center;
+}
+
+.navigation ul li a .title {
+  position: relative;
+  display: block;
+  padding: 0 10px;
+  height: 60px;
+  line-height: 60px;
+  text-align: start;
+  white-space: nowrap;
+}
+
+/* ==================  List ============== */
+/* {
+  position: relative;
+  width: 100%;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-gap: 30px;
+} */
+
+.recentOrders {
+  position: relative;
+  display: grid;
+  min-height: 100px;
+  background: var(--white);
+  padding: 20px;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
+  margin-top: 100px;
+  margin-left: 400px;
+  margin-right: 50px;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.cardHeader h2 {
+  font-weight: 50;
+  color: var(--blue);
+}
+.cardHeader .btn {
+  position: relative;
+  padding: 5px 10px;
+  background: var(--blue);
+  text-decoration: none;
+  color: var(--white);
+  border-radius: 6px;
+}
+
+table {
+  all: unset;
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0px;
+}
+table thead td {
+  font-weight: 600;
+}
+.recentOrders table tr {
+  color: var(--black1);
+  /* border-bottom: 100px solid hsla(0, 87%, 40%, 0.748); */
+}
+.recentOrders table tr:last-child {
+  border-bottom: none;
+}
+
+.person-details {
+  top: 100%;
+  left: 0;
+  width: 200px;
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  z-index: 9999;
+  display: none;
+  transition: opacity 0.3s, visibility 0.3s;
+}
+
+.person:hover .person-details {
+  opacity: 1;
+  display: block;
+}
+/* .recentOrders table tbody tr:hover {
+  background: var(--blue);
+  color: var(--white);
+} */
+.recentOrders table tr td {
+  padding: 10px;
+}
+.recentOrders table tr td:last-child {
+  text-align: end;
+}
+.recentOrders table tr td:nth-child(2) {
+  text-align: end;
+}
+.recentOrders table tr td:nth-child(3) {
+  text-align: center;
+}
+.acceptee {
+  padding: 4px 4px;
+  background: #8de02c;
+  color: var(--white);
+  border-radius: 15px;
+  font-size: 14px;
+  font-weight: 500;
+}
+.demandee {
+  padding: 4px 4px;
+  background: #e9b10a;
+  color: var(--white);
+  border-radius: 15px;
+  font-size: 14px;
+  font-weight: 500;
+}
+.archivee {
+  padding: 4px 4px;
+  background: rgb(113, 111, 111);
+  color: var(--white);
+  border-radius: 15px;
+  font-size: 14px;
+  font-weight: 500;
+}
+.encours {
+  padding: 4px 4px;
+  background: #1795ce;
+  color: var(--white);
+  border-radius: 15px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.refusee {
+  padding: 4px 4px;
+  background: #ff0505;
+  color: var(--white);
+  border-radius: 15px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* .effect {
+  color: var(--blue);
+}
+.effect::after,
+.effect::before {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 20%;
+  height: 20%;
+  border: 2.5px solid;
+  transition: all 0.6s ease;
+  border-radius: 2px;
+}
+
+.effect::after {
+  bottom: 0;
+  right: 0;
+  border-top-color: transparent;
+  border-left-color: transparent;
+  border-bottom-color: var(--blue);
+  border-right-color: var(--blue);
+}
+
+.effect::before {
+  top: 0;
+  left: 0;
+  border-bottom-color: transparent;
+  border-right-color: transparent;
+  border-top-color: var(--blue);
+  border-left-color: var(--blue);
+}
+
+.effect:hover:after,
+.effect:hover:before {
+  border-bottom-color: var(--blue);
+  border-right-color: var(--blue);
+  border-top-color: var(--blue);
+  border-left-color: var(--blue);
+  width: 100%;
+  height: 100%;
+} */
+/* ====================== Responsive Design ========================== */
+@media (max-width: 991px) {
+  .navigation {
+    left: -300px;
+  }
+  .navigation.active {
+    width: 300px;
+    left: 0;
+  }
+}
+
+/* @media (max-width: 768px) {
+   {
+    grid-template-columns: 1fr;
+  }
+  .recentOrders {
+    overflow-x: auto;
+  }
+  .inProgress {
+    white-space: nowrap;
+  }
+} */
+
+@media (max-width: 480px) {
+  .navigation {
+    width: 100%;
+    left: -100%;
+    z-index: 1000;
+  }
+  .navigation.active {
+    width: 100%;
+    left: 0;
+  }
+}
+
+.custom-textarea {
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid #ccc;
+  padding: 5px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.custom-textarea:focus {
+  border-color: #007bff;
+}
