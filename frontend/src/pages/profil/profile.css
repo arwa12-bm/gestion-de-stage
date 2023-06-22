@@ -79,7 +79,7 @@
    
     display: flex;
     flex-direction: column;
-    
+   
    padding: 2rem;
     width: 95%;
     height: 240px;
@@ -87,7 +87,21 @@
     margin-left: 20px;
     -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
     box-shadow: 0px 0px 14px -8px rgba(0, 0, 0, 0.68);
- 
+ background-color: rgb(252, 252, 252);
+}
+.profileDetails2{
+   
+    display: flex;
+    flex-direction: column;
+   
+   padding: 2rem;
+    width: 95%;
+    height: 240px;
+    border-radius: 8px;
+    margin-left: 20px;
+    -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+    box-shadow: 0px 0px 14px -8px rgba(0, 0, 0, 0.68);
+ background-color: rgb(252, 252, 252);
 }
 
 .profileInfoName{
@@ -104,6 +118,7 @@
     font-size: 24px;
     font-weight: 300;
    text-align: left;
+   display: flex;
    padding-bottom: 10px;
 }
 .phoneIcon {
@@ -122,6 +137,18 @@
    
   background-color: rgb(194, 200, 206);
   margin-left: 30px;
+}
+.ModifButton2 {
+    
+    display:inline-block;
+	margin:10px 10% 10px 10%;
+	padding: auto;
+    height: 80%;
+    width: 20%;
+   text-align:center;
+  background-color: rgb(194, 200, 206);
+ 
+  
 }
 
 .profileRightBottom{

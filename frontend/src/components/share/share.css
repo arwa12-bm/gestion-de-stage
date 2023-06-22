@@ -4,14 +4,16 @@
     border-radius: 10px;
     -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
     box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+    background-color: rgb(252, 252, 252);
   }
   
   .shareWrapper {
     padding: 10px;
+    
   }
   
   .shareTop {
-    display: flex;
+   /* display: flex; */
     align-items: center;
   }
   
@@ -28,12 +30,24 @@
     width: 80%;
   }
   
+  .Add{
+    display: flex;
+  }
+  .shareInputAdd {
+    border: none;
+    width: 80%;
+    margin-left: 12%;
+  }
+  
   .shareInput:focus {
+    outline: none;
+  }
+  .shareInputAdd:focus {
     outline: none;
   }
   
   .shareHr {
-    margin: 20px;
+    margin: 8px;
   }
   
   .shareBottom {

@@ -7,6 +7,8 @@ import Post from "../../components/post/post";
 import jwt_decode from "jwt-decode";
 import { Phone,Person,Create,Email} from "@mui/icons-material";
 import { useState,useEffect } from "react";
+import axios from "axios";
+import Logup from "../../components/Logup/Logup";
 export default function Profile() {
 
   const token =localStorage.getItem('token')
@@ -15,9 +17,9 @@ export default function Profile() {
   const post = user.post
   console.log(post)
   const[email,setEmail]=useState('');
-  const[name,setName]=useState('');
-  const[role,setRole]=useState('');
-  const[phone,setPhone]=useState('');
+  const[username,setUserName]=useState('');
+  const[id,setId]=useState();
+  const[userphone,setPhone]=useState('');
   const [isClicked,setIsClicked] = useState(true)
   const ModifHandler =()=>{
    
@@ -26,13 +28,26 @@ export default function Profile() {
   
   const handleChangeEmail = async (e) => {
     setEmail(e.target.value)  
+    
  }
  const handleChangeName = async (e) => {
-  setName(e.target.value)  
+  setUserName(e.target.value)  
 }
 const handleChangePhone = async (e) => {
   setPhone(e.target.value)  
 }
+
+const modifSubmit = async (e) => {
+      e.preventDefault();
+      setId(user.id)
+      console.log(id)
+      console.log({id,username,email,userphone });
+      
+     await axios.put('http://localhost:5100/api/v1/updateuserprofile', {id,username,email,userphone });
+   console.log("done")
+  
+};
+
 
   return (
     <>
@@ -65,63 +80,69 @@ const handleChangePhone = async (e) => {
                     <button className="ModifButton" onClick={ModifHandler}> < Create className="phoneIcon" /> Modify Your Personal Information</button>
                   </div>
                   :
-                  <div className="profileDetails">
+                  <form  onSubmit={modifSubmit} >
+                      <div className="profileDetails2">
 
-                    <span className="profileInfoTitle">Détails</span>
-                    <span className="profileInfoDesc">
-                         < Person className="phoneIcon" /> 
+                        <span className="profileInfoTitle">Détails</span>
+                        <span className="profileInfoDesc">
+                            < Person className="phoneIcon" /> 
 
-                          <input   type="text"
-                                    placeholder={user.username} 
-                                    value={name} 
-                                    onChange={handleChangeName} 
-                                    onMouseEnter={(e)=>e.target.style.borderBottom= "solid blue 2px"  }
-                                    onMouseOut={(e)=>e.target.style.borderBottom= "" }
-                                    className="profilInput"  />
-                      </span>
-                      <span className="profileInfoDesc">
-                          < Email className="phoneIcon" /> 
+                              <input   type="text"
+                                        placeholder={user.username} 
+                                        value={username} 
+                                        onChange={handleChangeName} 
+                                        onMouseEnter={(e)=>e.target.style.borderBottom= "solid blue 2px"  }
+                                        onMouseOut={(e)=>e.target.style.borderBottom= "" }
+                                        className="profilInput"  />
+                          </span>
+                          <span className="profileInfoDesc">
+                              < Email className="phoneIcon" /> 
 
-                          <input   type="text"
-                                    placeholder={user.email} 
-                                    value={email} 
-                                    onChange={handleChangeEmail} 
-                                    onMouseEnter={(e)=>e.target.style.borderBottom= "solid blue 2px"  }
-                                    onMouseOut={(e)=>e.target.style.borderBottom= "" }
-                                    className="profilInput"  />
-                      </span>
+                              <input   type="email"
+                                        placeholder={user.email} 
+                                        value={email} 
+                                        onChange={handleChangeEmail} 
+                                        onMouseEnter={(e)=>e.target.style.borderBottom= "solid blue 2px"  }
+                                        onMouseOut={(e)=>e.target.style.borderBottom= "" }
+                                        className="profilInput"  />
+                              </span>
 
-                    {/* <span className="profileInfoDesc">
+                        {/* <span className="profileInfoDesc">
 
-                      < Person className="phoneIcon" />
+                          < Person className="phoneIcon" />
 
-                       <input type="text" 
-                       placeholder={user.role} 
-                       value={phone} 
-                       onChange={handleChangePhone} 
-                       onMouseEnter={(e)=>e.target.style.borderBottom= "solid blue 2px"  }
-                       onMouseOut={(e)=>e.target.style.borderBottom= "" }
-                       className="profilInput"  /> 
+                          <input type="text" 
+                          placeholder={user.role} 
+                          value={phone} 
+                          onChange={handleChangePhone} 
+                          onMouseEnter={(e)=>e.target.style.borderBottom= "solid blue 2px"  }
+                          onMouseOut={(e)=>e.target.style.borderBottom= "" }
+                          className="profilInput"  /> 
 
-                    </span> */}
-                    <span className="profileInfoDesc"> 
-                        < Phone className="phoneIcon" /> 
+                        </span> */}
+                        <span className="profileInfoDesc"> 
+                            < Phone className="phoneIcon" /> 
 
-                        <input type="text" 
-                        placeholder={user.userphone} 
-                        value={phone} 
-                        onChange={handleChangePhone} 
-                        onMouseEnter={(e)=>e.target.style.borderBottom= "solid blue 2px"  }
-                        onMouseOut={(e)=>e.target.style.borderBottom= "" }
-                        className="profilInput"  />  
+                            <input type="text" 
+                            placeholder={user.userphone} 
+                            value={userphone} 
+                            onChange={handleChangePhone} 
+                            onMouseEnter={(e)=>e.target.style.borderBottom= "solid blue 2px"  }
+                            onMouseOut={(e)=>e.target.style.borderBottom= "" }
+                            className="profilInput"  />  
 
-                     </span>
-                    <button className="ModifButton" onClick={ModifHandler}>  annuler</button>
-                  </div>
+                        </span>
+                        <div>
+                        <button className="ModifButton2" onClick={ModifHandler}> Cancel</button>
+                        <button className="ModifButton2" type="submit"> Modify</button>
+                        </div>
+                      </div>
+                  </form>
                 }
               <div className="profileBody">
                   <Share/>
                   <Post/>
+                  <Logup/>
              </div>
            
             

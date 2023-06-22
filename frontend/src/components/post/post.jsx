@@ -54,7 +54,7 @@ console.log(typeof post)
             <span className="postUsername">
               {/* {Users.filter((u) => u.id === post?.userId)[0].username} */}
             </span>
-            <span className="postDate">Profile Name</span>
+            <span className="postDate">{user.username}</span>
             {/* <span className="postDate">{post.date}</span> */}
           </div>
           <div className="postTopRight">

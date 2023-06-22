@@ -208,3 +208,15 @@ export async function updateUsers (request:Request, response: Response) {
         console.log(err.message);
     }
 } 
+export async function updateUsersProfile (request:Request, response: Response) {
+    try{
+       // const {rows}= await pool.query(' UPDATE users SET email=${request.body.email},password=${request.body.password},username=$4,userphone=${request.body.username},role=${request.body.role},isadmin=${request.body.isadmin},status=${request.body.status} where id=${request.body.id}');
+
+        const {rows}= await pool.query(' UPDATE users SET email=$2,username=$3,userphone=$4  where id=$1 ',
+        [request.body.id,request.body.email,request.body.username,request.body.userphone]);
+         console.log(rows)
+     return response.status(200).json({error: false, message: "success"})
+        }catch(err){ 
+        console.log(err.message);
+    }
+} 

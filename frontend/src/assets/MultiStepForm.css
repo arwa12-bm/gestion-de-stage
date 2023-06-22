@@ -13,7 +13,7 @@ html {
 
   /*background = gradient + image pattern combo*/
 
-  background-image: url("Images/b-g.jpg");
+  /* background-image: url("Images/b-g.jpg"); */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -166,7 +166,7 @@ select {
 input[id="blue"] {
   display: none;
 }
-
+/* 
 label {
   display: inline-block;
   padding: 10px 20px;
@@ -178,8 +178,10 @@ label {
   cursor: pointer;
   transition: background-color 0.3s, border-color 0.3s, color 0.3s,
     box-shadow 0.3s;
-}
+} */
 
+
+/* 
 input[id="blue"]:checked + label {
   color: rgb(49, 49, 87);
   border-color: currentColor;
@@ -199,7 +201,7 @@ label:hover {
   border-color: currentColor;
   box-shadow: 0 0 10px currentColor, 0 0 20px currentColor,
     0 0 30px currentColor;
-}
+} */
 
 /** Icone + et - **/
 .supprime {
