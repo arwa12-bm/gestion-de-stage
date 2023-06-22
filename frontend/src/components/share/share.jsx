@@ -4,6 +4,7 @@ import { useState,useEffect } from "react";
 
 
 export default function Share() {
+
   const [isClicked,setIsClicked] = useState(false)
   const ModifHandler =()=>{
    
@@ -13,27 +14,40 @@ export default function Share() {
 
   return (
     <div className="share">
-      <div className="shareWrapper">
+      <div className="shareWrapper" >
         <div className="shareTop">
+        
           <img className="shareProfileImg" src="src/assets/pers.jpg" alt="" />
+         
+        <form className="shareTop2">
+        <input id="title-input" type="text" name="title" placeholder="Title" 
+           className="shareInput"/>
           <input
             placeholder="What's in your mind ?"
             className="shareInput"
           />
+          <select id="select" 
+                        className="shareSelect"
+                        placeholder= "Role"
+                         >
+                           <option >--Type of post--</option>
+                           <option >Materiel problem</option>
+                           <option >logiciel problem</option>
+                           
+                        </select>
            {isClicked?
            <div  className="Add">
-            <input id="file-input" type="file" name="file" placeholder="input file"
-            className="shareInputAdd"/>
-             <input id="title-input" type="text" name="title" placeholder="Title" 
-            className="shareInputAdd"/>
+            <input id="file-input" type="file" name="file"  placeholder="input file"
+            className="shareInputfileAdd"/>
             <input id="tag-input" type="text" name="tag" placeholder="Tag" 
-            className="shareInputAdd"/>
+            className="shareInput"/>
            
             </div>
             :""
           }
-         
-        </div>
+           
+         </form>
+         </div>
         <hr className="shareHr"/>
         <div className="shareBottom">
             <div className="shareOptions">

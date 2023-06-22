@@ -62,8 +62,8 @@ export async function insertPosts (request:Request, response: Response) {
     try{
     
         console.log(request.body)
-       const rows = await pool.query('insert into posts (id,id_user,title,url,photo,type_post,description,commentaire,tag,created_at)  values($1,$2,$3,$4,$5,$6,$7,$8,$9,$10) ',
-       [request.body.id,request.body.id_user,request.body.title,request.body.url,request.body.photo,request.body.type_post,request.body.description,request.body.commentaire,request.body.tag,request.body.created_at]);
+       const rows = await pool.query('insert into posts (id_user,title,url,photo,type_post,description,commentaire,tag,created_at)  values($1,$2,$3,$4,$5,$6,$7,$8,$9) ',
+       [request.body.id_user,request.body.title,request.body.url,request.body.photo,request.body.type_post,request.body.description,request.body.commentaire,request.body.tag,request.body.created_at]);
          console.log(rows)
      return response.status(200).json({error: false, message: "success"})
         }catch(err){

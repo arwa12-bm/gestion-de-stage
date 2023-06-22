@@ -8,7 +8,8 @@ import jwt_decode from "jwt-decode";
 import { Phone,Person,Create,Email} from "@mui/icons-material";
 import { useState,useEffect } from "react";
 import axios from "axios";
-import Logup from "../../components/Logup/Logup";
+import NavigationMenu from "../../components/AccueilComponents/Navigation"
+import CreateAccount from "../../components/CreateAccount/CreateAccount";
 export default function Profile() {
 
   const token =localStorage.getItem('token')
@@ -53,7 +54,7 @@ const modifSubmit = async (e) => {
     <>
       <Header />
       <div className="profile">
-        <Sidebar />
+      <NavigationMenu/>
         <div className="profileRight">
           <div className="profileRightTop">
             <div className="profileCover">
@@ -142,7 +143,7 @@ const modifSubmit = async (e) => {
               <div className="profileBody">
                   <Share/>
                   <Post/>
-                  <Logup/>
+                  <CreateAccount/>
              </div>
            
             

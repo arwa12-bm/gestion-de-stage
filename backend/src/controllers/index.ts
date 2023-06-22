@@ -188,10 +188,15 @@ export async function insertUsers (request:Request, response: Response) {
     try{
 
         console.log(request.body)
-        const rows = await pool.query('insert into users (id,email,password,username,userphone,role,isadmin,status) values($1,$2,$3,$4,$5,$6,$7,$8) returning *',
-        [request.body.id,request.body.email,request.body.password,request.body.username,request.body.userphone,request.body.role,request.body.isadmin,request.body.status]);
-         console.log(rows)
+        const result = await pool.query(`select * from users where email=$1`,[request.body.email]);
+        if(result.rows.length===0){
+        const rows = await pool.query('insert into users (email,password,username,userphone,role,isadmin,status) values($1,$2,$3,$4,$5,$6,$7) returning *',
+        [request.body.email,request.body.password,request.body.username,request.body.userphone,request.body.role,request.body.isadmin,request.body.status]);
+        console.log(rows)
      return response.status(200).json({error: false, message: "success"})
+    }else{
+        return response.status(404).json({error: true, message: " found"})
+    }
         }catch(err){
         console.log(err.message);
     }

@@ -1,10 +1,11 @@
 
 import { useState}from"react";
 import Axios  from "axios";
-import "./Logup.css";
+import jwt_decode from "jwt-decode";
+import "./CreateAccount.css";
 
  
-export default function Logup() {
+export default function CreateAccount() {
  
   const initialUser ={
     username:"",
@@ -14,7 +15,9 @@ export default function Logup() {
     phone:""
   }
 
-
+  const token =localStorage.getItem('token')
+  const user = jwt_decode(token);
+  console.log(user);
  
   const[email,setEmail]=useState(initialUser.email);
   const[password,setPassword]=useState(initialUser.password);
@@ -65,17 +68,27 @@ export default function Logup() {
 
   }
 
+//   {
+//     "id": 2,
+//     "email": "test",
+//     "password": "test",
+//     "userphone": 123,
+//     "role": "test",
+//     "isadmin": true,
+//     "status": null,
+//     "username": "test"
+// }
 
 
+const handleSubmitCreate = async (e) => {
+  e.preventDefault();
+  
+  console.log({ email, password,username,userphone,"role":"encadrant","isadmin":false ,"status":null });
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        
-        console.log({ email, password });
+  await Axios.post('http://localhost:5100/api/v1/insertuser',{ email,username, password,userphone,"role":"encadrant","isadmin":false ,"status":null } );
+   console.log("done")
+};
 
-        await Axios.put('http://localhost:5100/api/v1/updateuser', { email, password });
-    };
-    
 
 
    return (
@@ -86,7 +99,7 @@ export default function Logup() {
           <div className="loginBox">
 
 
-            <form  onSubmit={handleSubmit}>
+            <form  onSubmit={handleSubmitCreate}>
                 
                   <label htmlFor="title" className="title" >Create Account </label>
                   <input placeholder="Enter your name"
@@ -97,7 +110,7 @@ export default function Logup() {
                             onMouseEnter={(e)=>e.target.style.borderBottom= "solid blue 2px" }
                             onMouseOut={(e)=>e.target.style.borderBottom= "" }
                             className="loginInput" />
-                 <input placeholder="Enter your phone"
+                  <input placeholder="Enter your phone"
                             type="text" 
                             required 
                             value={userphone} 
@@ -136,7 +149,7 @@ export default function Logup() {
                            <option value={role}>Stagiaire</option>
                         </select> */}
                  <button className="loginButton"
-                  type="submit" >Log up</button>
+                  type="submit" >Create</button>
                 
             </form>
           </div>

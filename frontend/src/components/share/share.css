@@ -6,6 +6,13 @@
     box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
     background-color: rgb(252, 252, 252);
   }
+  form{
+    
+   
+    border: none;
+    
+   
+  }
   
   .shareWrapper {
     padding: 10px;
@@ -13,9 +20,17 @@
   }
   
   .shareTop {
-   /* display: flex; */
-    align-items: center;
+   display: flex;
+  
+    padding: 2%;
+    padding-bottom: 0%;
   }
+  .shareTop2 {
+    display: flex;
+   margin: 1%;
+     padding: 1%;
+     background-color: transparent;
+   }
   
   .shareProfileImg {
     width: 50px;
@@ -28,16 +43,23 @@
   .shareInput {
     border: none;
     width: 80%;
+    margin: 0.5%;
+    margin-left: 4%;
+    background-color: transparent;
   }
-  
+  .shareSelect {
+    
+    border: none;
+   margin-bottom:1%;
+    padding: 2%;
+    background-color: transparent;
+    width:80%;
+  }
   .Add{
     display: flex;
+    padding: 1px;
   }
-  .shareInputAdd {
-    border: none;
-    width: 80%;
-    margin-left: 12%;
-  }
+ 
   
   .shareInput:focus {
     outline: none;
@@ -45,9 +67,15 @@
   .shareInputAdd:focus {
     outline: none;
   }
+  .shareInputfileAdd{
+     display: none;
+  }
+  .shareInputfileAdd:focus {
+    outline: none;
+  }
   
   .shareHr {
-    margin: 8px;
+    margin-bottom: 8px;
   }
   
   .shareBottom {

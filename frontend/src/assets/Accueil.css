@@ -33,7 +33,7 @@ body {
 }
 
 /* =============== Navigation ================ */
-.navigation {
+/* .navigation {
   position: fixed;
   width: 300px;
   height: 100%;
@@ -101,7 +101,7 @@ body {
   line-height: 60px;
   text-align: start;
   white-space: nowrap;
-}
+} */
 
 /* ==================  List ============== */
 /* {
