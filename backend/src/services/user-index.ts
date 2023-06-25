@@ -1,177 +1,193 @@
 import pool from "../Database/index";
 
-export const get_all_user = async () => {
-    try {
-        const result = await pool.query(
-            "SELECT * FROM users",
-            (error, response) => {
-                console.log(
-                    "error message into get all users: ",
-                    error.message
-                );
-                return response;
-            }
-        );
-        return result.rows;
-    } catch (error) {
-        console.error(error.message);
-    }
-};
-
-export const get_user_by_id = async (id: number) => {
-    try {
-        const result = await pool.query(
-            `SELECT * FROM users WHERE id=${id}`,
-            (error, response) => {
-                console.log(
-                    "error message into get user by id: ",
-                    error.message
-                );
-                return response;
-            }
-        );
-        return result;
-    } catch (error) {
-        console.error(error.message);
-    }
-};
-
-export const get_satgiaire = async () => {
-    try {
-        const result = await pool.query(
-            `SELECT * FROM users WHERE role='stagiaire'`
-            //,
-            // (error, response) => {
-            //     console.log(
-            //         "error message into get stagiaire: ",
-            //         error.message
-            //     );
-            //     return response;
-            // }
-        );
-        //console.log(result.rows);
-        return result;
-    } catch (error) {
-        console.error(error.message);
-    }
-};
-
-/**
- * error undefined & result undefined !!
- * @returns
- */
-export const get_satgiaire_demande = (): Promise<any> => {
+export const get_all_user = async (): Promise<any> => {
     return new Promise((resolve, reject) => {
-        const sql = `SELECT * FROM users WHERE role='stagiaire' AND status = 'Demande en cours';`; // Votre requête SQL ici
+        pool.query(
+            "SELECT * FROM users",
+            (error: Error, response: Response) => {
+                if (error) {
+                    console.log(
+                        "Error executing query (get_all_user):",
+                        error.message
+                    );
+                    reject(error);
+                } else {
+                    console.log("Query result:", response);
+                    resolve(response);
+                }
+            }
+        );
+    });
+};
 
-        pool.query(sql, (error: any, response: any) => {
+export const get_user_by_id = async (id: number): Promise<any> => {
+    return new Promise((resolve, reject) => {
+        pool.query(
+            `SELECT * FROM users WHERE id=${id}`,
+
+            (error: Error, response: Response) => {
+                if (error) {
+                    console.log(
+                        "Error executing query (get_user_by_id):",
+                        error.message
+                    );
+                    reject(error);
+                } else {
+                    console.log("Query result:", response);
+                    resolve(response);
+                }
+            }
+        );
+    });
+};
+
+export const get_satgiaire = async (): Promise<any> => {
+    return new Promise((resolve, reject) => {
+        pool.query(
+            `SELECT * FROM users WHERE role='stagiaire'`,
+
+            (error: Error, response: Response) => {
+                if (error) {
+                    console.log(
+                        "Error executing query (get_satgiaire):",
+                        error.message
+                    );
+                    reject(error);
+                } else {
+                    //console.log("Query result:", response);
+                    console.log("Query result:", "SUCESS");
+                    resolve(response);
+                }
+            }
+        );
+    });
+};
+
+export const get_satgiaire_demande = async (): Promise<any> => {
+    return new Promise((resolve, reject) => {
+        const sql = `SELECT * FROM users WHERE role='stagiaire' AND status = 'Demande en cours'`;
+
+        pool.query(sql, (error: Error, response: Response) => {
+            console.log("sql:", sql);
             if (error) {
-                console.log("Error executing query:", error);
-                reject(error); // Rejette la promesse en cas d'erreur
+                // console.log("sql: ", sql);
+                console.log(
+                    "Error executing query (get_satgiaire_demande):",
+                    error.message
+                );
+                reject(error);
             } else {
-                console.log("Query result:", response.rows);
-                resolve(response.rows); // Résout la promesse avec les résultats de la requête
+                //console.log("Query result:", response);
+                resolve(response);
             }
         });
     });
 };
 
-//  async () => {
-//     //let data = [];
-//     try {
-//         const sql = `SELECT * FROM users WHERE role='stagiaire' AND status = 'Demande en cours';`;
-//         const data = await pool.query(
-//             sql
-            //     , (err: any, res: any) => {
-            //     if (err) {
-            //         return err;
-            //     }
-            //     // console.log("resss", res);
-            //     return res.rows;
-            // }
-//         );
-//         console.log("sql: ", data);
-//         return data;
-//     } catch (error) {
-//         console.log(
-//             "error message catch into get stagaire demande: ",
-//             error.message
-//         );
-//         console.error(error.message);
-//     }
-// };
-
-export const get_satgiaire_active = async () => {
-    try {
-        const result = await pool.query(
-            `SELECT * FROM users WHERE role='stagiaire' and status = 'en cours de stage';`,
-            (error, response) => {
-                console.log(
-                    "error message get stagaire active: ",
-                    error.message
-                );
-                return response;
+export const get_satgiaire_active = async (): Promise<any> => {
+    return new Promise((resolve, reject) => {
+        pool.query(
+            `SELECT * FROM users WHERE role='stagiaire' and status = 'En cours de stage';`,
+            (error: Error, response: Response) => {
+                if (error) {
+                    console.log(
+                        "Error executing query (get_satgiaire_active):",
+                        error.message
+                    );
+                    reject(error);
+                } else {
+                    console.log("Query result:", response);
+                    resolve(response);
+                }
             }
         );
-        return result;
-    } catch (error) {
-        console.error(error.message);
-    }
+    });
 };
 
-export const get_satgiaire_archive = async () => {
-    try {
-        const result = await pool.query(
-            `SELECT * FROM users WHERE role='stagiaire' and status = 'archivé';`,
-            (error, response) => {
-                console.log(
-                    "error message into get stagaire archive: ",
-                    error.message
-                );
-                return response;
+export const get_satgiaire_archive = async (): Promise<any> => {
+    return new Promise((resolve, reject) => {
+        pool.query(
+            `SELECT * FROM users WHERE role='stagiaire' and status = 'Archivé';`,
+            (error: Error, response: Response) => {
+                if (error) {
+                    console.log(
+                        "Error executing query (get_satgiaire_archive):",
+                        error.message
+                    );
+                    reject(error);
+                } else {
+                    console.log("Query result:", response);
+                    resolve(response);
+                }
             }
         );
-        return result;
-    } catch (error) {
-        console.error(error.message);
-    }
+    });
 };
 
-export const get_satgiaire_refuse = async () => {
-    try {
-        const result = await pool.query(
-            `SELECT * FROM users WHERE role='stagiaire'and status = 'refusé';`,
-            (error, response) => {
-                console.log(
-                    "error message get stagaire refuse: ",
-                    error.message
-                );
-                return response;
+export const get_satgiaire_refuse = async (): Promise<any> => {
+    return new Promise((resolve, reject) => {
+        pool.query(
+            `SELECT * FROM users WHERE role='stagiaire'and status = 'Refusé';`,
+            (error: Error, response: Response) => {
+                if (error) {
+                    console.log(
+                        "Error executing query (get_satgiaire_refuse):",
+                        error.message
+                    );
+                    reject(error);
+                } else {
+                    console.log("Query result:", response);
+                    resolve(response);
+                }
             }
         );
-        return result;
-    } catch (error) {
-        console.error(error.message);
-    }
+    });
 };
 
-export const get_satgiaire_accepte = async () => {
-    try {
-        const result = await pool.query(
-            `SELECT * FROM users WHERE role='stagiaire'and status = 'accepté';`,
-            (error, response) => {
-                console.log(
-                    "error message get stagaire accepte: ",
-                    error.message
-                );
-                return response;
+export const get_satgiaire_accepte = async (): Promise<any> => {
+    return new Promise((resolve, reject) => {
+        pool.query(
+            `SELECT * FROM users WHERE role='stagiaire'and status = 'Accepté';`,
+            (error: Error, response: Response) => {
+                if (error) {
+                    console.log(
+                        "Error executing query (get_satgiaire_accepte):",
+                        error.message
+                    );
+                    reject(error);
+                } else {
+                    console.log("Query result:", response);
+                    resolve(response);
+                }
             }
         );
-        return result;
-    } catch (error) {
-        console.error(error.message);
-    }
+    });
 };
+
+interface UserInfo {
+    formations: {
+        niveau: string;
+        diplome: string;
+        specialite: string;
+        faculte: string;
+        date_debut: string;
+        date_fin: string;
+    }[];
+    experiences: {
+        societe: string;
+        type: string;
+        date_debut: string;
+        date_fin: string;
+    }[];
+    projets: {
+        title: string;
+        language: string;
+        type: string;
+        description: string;
+    }[];
+    skills: string;
+    files: string[];
+}
 
 type User = {
     id: number;
@@ -182,71 +198,96 @@ type User = {
     role: "satagiaire" | "admin" | "encadreur";
     status: string | null;
     isAdmin: Boolean;
+    infor: UserInfo;
 };
 
-export const add_user = async (user: User) => {
-    try {
-        const sql = `INSERT INTO users(username, email, password, userphone, role, status, isadmin)
-        VALUES ('${user.name}', '${user.email}' , '${user.password}' , ${user.phone} , '${user.role}' , '${user.status}' , false );`;
-
-        const result = await pool.query(sql, (error, response) => {
-            console.log("error message add user: ", error.message);
-            return response;
+export const add_user = async (user: User): Promise<any> => {
+    return new Promise((resolve, reject) => {
+        const sql = `INSERT INTO users(username, email, password, userphone, role, status, isadmin, infor)
+        VALUES ('${user.name}', '${user.email}' , '${user.password}' , ${
+            user.phone
+        } , '${user.role}' , '${user.status}' , false, '${JSON.stringify(
+            user.infor
+        )}'::jsonb );`;
+        pool.query(sql, (error: Error, response: Response) => {
+            if (error) {
+                console.log("Error executing query (add_user):", error.message);
+                reject(error);
+            } else {
+                console.log("Query result:", response);
+                resolve(response);
+            }
         });
-        return result;
-    } catch (error) {
-        console.error(error);
-    }
+    });
 };
 
-export const delete_user = async (id: number) => {
-    try {
-        const result = await pool.query(
+export const delete_user = async (id: number): Promise<any> => {
+    return new Promise((resolve, reject) => {
+        pool.query(
             `DELETE FROM users WHERE id=${id}`,
-            (error, response) => {
-                console.log("error message delete user: ", error.message);
-                return response;
+            (error: Error, response: Response) => {
+                if (error) {
+                    console.log(
+                        "Error executing query (delete_user):",
+                        error.message
+                    );
+                    reject(error);
+                } else {
+                    console.log("Query result:", response);
+                    resolve(response);
+                }
             }
         );
-        console.log(result.rows);
-
-        return "success";
-    } catch (error) {
-        console.error(error.message);
-    }
-}; //
-
-export const update_user = async (id: number, user: User) => {
-    try {
-        const result = await pool.query(
-            //
-            `UPDATE users SET username = '${user.name}' , email = '${user.email}',password = '${user.password}', userphone = ${user.phone},role = '${user.role}', status = '${user.status}', isadmin = ${user.isAdmin} WHERE id = ${id}`,
-            (error, response) => {
-                console.log("error message update user: ", error.message);
-                return response;
-            }
-        );
-        console.log(result.rows);
-
-        return "success";
-    } catch (error) {
-        console.error(error.message);
-    }
+    });
 };
 
-export const update_status_user = async (id: number, status: string) => {
-    try {
-        const result = await pool.query(
+export const update_user = async (id: number, user: User): Promise<any> => {
+    return new Promise((resolve, reject) => {
+        pool.query(
+            //
+            `UPDATE users SET username = '${user.name}' , email = '${
+                user.email
+            }',password = '${user.password}', userphone = ${
+                user.phone
+            },role = '${user.role}', status = '${user.status}', isadmin = ${
+                user.isAdmin
+            }, infor = '${JSON.stringify(user.infor)}'::jsonb WHERE id = ${id}`,
+            (error: Error, response: Response) => {
+                if (error) {
+                    console.log(
+                        "Error executing query (update_user):",
+                        error.message
+                    );
+                    reject(error);
+                } else {
+                    console.log("Query result: SUCESS");
+                    resolve(response);
+                }
+            }
+        );
+    });
+};
+
+export const update_status_user = async (
+    id: number,
+    status: string
+): Promise<any> => {
+    return new Promise((resolve, reject) => {
+        pool.query(
             //
             `UPDATE users SET status = '${status}' WHERE id = ${id}`,
-            (error, response) => {
-                console.log("error messageupdate user status: ", error.message);
-                return response;
+            (error: Error, response: Response) => {
+                if (error) {
+                    console.log(
+                        "Error executing query (update_status_user):",
+                        error.message
+                    );
+                    reject(error);
+                } else {
+                    console.log("Query result: SUCESS");
+                    resolve(response);
+                }
             }
         );
-        console.log(result.rows);
-        return "success";
-    } catch (error) {
-        console.error(error.message);
-    }
+    });
 };
