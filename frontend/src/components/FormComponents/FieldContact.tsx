@@ -1,5 +1,4 @@
 import React from "react";
-// import "../../assets/MultiStepForm.css";
 // import { Form, Input } from "antd";
 
 interface FieldContactProps {

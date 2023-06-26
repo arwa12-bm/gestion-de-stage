@@ -1,6 +1,5 @@
-import "./post.css";
 import { MoreVert } from "@mui/icons-material";
-import Axios  from "axios";
+// import Axios  from "axios";
 import jwt_decode from "jwt-decode";
 import { useState,useEffect } from "react";
 

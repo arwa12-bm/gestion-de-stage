@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from "react";
 import {
-  CheckCircleOutlined,
   CloseCircleOutlined,
   FolderAddOutlined,
   PhoneOutlined,
   MailOutlined,
 } from "@ant-design/icons";
 import { Button, message, Modal } from "antd";
-import FilterButton from "./Filter";
 
 interface InformationUser {
   formations: {
@@ -46,38 +44,30 @@ interface UserData {
   infor: InformationUser;
 }
 
-const Demandes: React.FC = () => {
+const Archive: React.FC = () => {
   const [isSaving, setIsSaving] = useState(false);
   const [dataArray, setData] = useState<UserData[]>([]);
-  const [showAllStagiaires, setShowAllStagiaires] = useState(false);
-  const [viewText, setViewText] = useState("View All");
   const [modalStates, setModalStates] = useState(
     Array(dataArray.length).fill(false)
   );
 
-  const [selectedFilter, setSelectedFilter] = useState<string>("demandees");
-
-  const handleSave = (id: number, status: string) => {
+  const handleSave = (id: number) => {
     setIsSaving(true);
-
     setTimeout(async () => {
       try {
-        const response = await fetch(
-          `http://localhost:5100/update?id=${id}&status=${status}`,
-          {
-            method: "PUT",
-          }
-        );
+        const response = await fetch(`http://localhost:5100/delete?id=${id}`, {
+          method: "DELETE",
+        });
 
         if (response.ok) {
           const updatedDataArray = dataArray.map((item) => {
             if (item.id === id) {
-              return { ...item, status };
+              return { ...item };
             }
             return item;
           });
           setData(updatedDataArray);
-          message.success("Mise à jour réussie !");
+          message.success("Réussie !");
         } else {
           throw new Error("Erreur lors de l'enregistrement");
         }
@@ -89,62 +79,10 @@ const Demandes: React.FC = () => {
     }, 2000);
   };
 
-  const handleViewAll = () => {
-    if (viewText === "View All") {
-      setShowAllStagiaires(!showAllStagiaires);
-      const fetchData = async () => {
-        try {
-          const response = await fetch("http://localhost:5100/stagiaires");
-          if (response.ok) {
-            const data = await response.json();
-            const dataArray = Array.from(data.result);
-            setData(dataArray as UserData[]);
-            console.log(Array.isArray(Array.from(data.result)));
-            console.log(data);
-          } else {
-            throw new Error("Erreur lors de la récupération des données");
-          }
-        } catch (error) {
-          console.error(error.message);
-        }
-      };
-
-      fetchData();
-      setViewText("View Less");
-    } else {
-      setShowAllStagiaires(!showAllStagiaires);
-      const fetchData = async () => {
-        try {
-          const response = await fetch(
-            "http://localhost:5100/stagiaires-demandees"
-          );
-          if (response.ok) {
-            const data = await response.json();
-            const dataArray = Array.from(data.result);
-            setData(dataArray as UserData[]); // Stocke les données récupérées dans l'état du composant
-            console.log(Array.isArray(Array.from(data.result)));
-            console.log(data);
-          } else {
-            throw new Error("Erreur lors de la récupération des données");
-          }
-        } catch (error) {
-          console.error(error.message);
-        }
-      };
-
-      fetchData();
-      setViewText("View All");
-    }
-  };
-
   const handleCancel = (index: number) => {
     const newModalStates = [...modalStates];
     newModalStates[index] = false;
     setModalStates(newModalStates);
-  };
-
-  const handleFilter = (filter: string) => {
-    setSelectedFilter(filter);
   };
 
   const showModal = (index: number) => {
@@ -157,7 +95,7 @@ const Demandes: React.FC = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5100/stagiaires-${selectedFilter}`
+          `http://localhost:5100/stagiaires-archivees`
         );
         if (response.ok) {
           const data = await response.json();
@@ -172,18 +110,12 @@ const Demandes: React.FC = () => {
     };
 
     fetchData();
-  }, [selectedFilter]);
+  }, []);
 
   return (
-    <div className="recentOrders">
-      <div className="cardHeader">
-        <h2>Demandes de stages</h2>
-        <span className="filterButton">
-          <FilterButton onFilter={handleFilter} />
-        </span>
-        <a href="#" className="btn" onClick={handleViewAll}>
-          {viewText}
-        </a>
+    <div className="tabEncad">
+      <div className="header">
+        <h2>Archivage</h2>
       </div>
       <table>
         <thead>
@@ -305,21 +237,7 @@ const Demandes: React.FC = () => {
               <td>{item.email}</td>
               <td>{item.userphone}</td>
               <td>
-                <span
-                  className={
-                    item.status === "Accepté"
-                      ? "acceptee"
-                      : item.status === "Refusé"
-                      ? "refusee"
-                      : item.status === "Demande en cours"
-                      ? "demandee"
-                      : item.status === "Archivé"
-                      ? "archivee"
-                      : "encours"
-                  }
-                >
-                  {item.status}
-                </span>
+                <span className="archivee">{item.status}</span>
               </td>
               <td>
                 <textarea
@@ -327,30 +245,6 @@ const Demandes: React.FC = () => {
                   rows={4}
                   value={item.remarques}
                 />
-              </td>
-              <td>
-                <Button
-                  name={item.id.toString() + "check"}
-                  type="text"
-                  icon={
-                    <CheckCircleOutlined
-                      style={{
-                        fontSize: 24,
-                        color: "hsla(118, 79%, 44%, 0.748)",
-                      }}
-                    />
-                  }
-                  onClick={() => handleSave(item.id, "Accepté")}
-                  loading={isSaving}
-                  style={{
-                    marginRight: 10,
-                  }}
-                  disabled={
-                    item.status === "En cours de stage" ||
-                    item.status === "Archivé" ||
-                    item.status === "Accepté"
-                  }
-                ></Button>
               </td>
               <td>
                 <Button
@@ -364,36 +258,11 @@ const Demandes: React.FC = () => {
                       }}
                     />
                   }
-                  onClick={() => handleSave(item.id, "Refusé")}
+                  onClick={() => handleSave(item.id)}
                   loading={isSaving}
                   style={{
                     marginRight: 10,
                   }}
-                  disabled={item.status === "Refusé"}
-                ></Button>
-              </td>
-              <td>
-                <Button
-                  name={item.id.toString() + "Add"}
-                  type="text"
-                  icon={
-                    <FolderAddOutlined
-                      style={{
-                        fontSize: 24,
-                        color: "rgb(113, 111, 111)",
-                      }}
-                    />
-                  }
-                  onClick={() => handleSave(item.id, "Archivé")}
-                  loading={isSaving}
-                  style={{
-                    marginRight: 10,
-                  }}
-                  disabled={
-                    item.status === "Demande en cours" ||
-                    item.status === "Archivé" ||
-                    item.status === "Refusé"
-                  }
                 ></Button>
               </td>
             </tr>
@@ -404,4 +273,4 @@ const Demandes: React.FC = () => {
   );
 };
 
-export default Demandes;
+export default Archive;

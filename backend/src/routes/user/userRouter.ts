@@ -13,6 +13,7 @@ import {
     getStagiaireRefusee,
     getStagiaireArchivee,
     getStagiaireActivee,
+    getEncadrent,
 } from "@controllers/index";
 
 export const routerUser = express.Router();
@@ -40,3 +41,7 @@ routerUser.route("/update").put(updateUserStatus);
 routerUser.route("/updateuser").put(updateUser);
 
 routerUser.route("/stage-demandes").post(addUser);
+
+routerUser.route("/encadrent-Add").post(addUser);
+
+routerUser.route("/encadrents").get(getEncadrent);

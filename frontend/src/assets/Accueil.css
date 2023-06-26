@@ -1,5 +1,6 @@
 /* =========== Google Fonts ============ */
 /* @import url("https://fonts.google.com/specimen/Playfair?preview.size=24"); */
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap");
 
 /* =============== Globals ============== */
 * {
@@ -16,6 +17,10 @@
   --black2: #999;
 }
 
+.page-content {
+  font-family: "Playfair Display", serif;
+}
+
 html {
   min-height: 100vh;
   background: rgb(241, 241, 245);
@@ -23,6 +28,8 @@ html {
 }
 
 body {
+  font-family: "Playfair Display", serif;
+
   min-height: 100vh;
   overflow-x: hidden;
 }
@@ -34,6 +41,7 @@ body {
 
 /* =============== Navigation ================ */
 .navigation {
+  font-family: "Playfair Display", serif;
   position: fixed;
   width: 300px;
   height: 100%;
@@ -104,16 +112,9 @@ body {
 }
 
 /* ==================  List ============== */
-/* {
-  position: relative;
-  width: 100%;
-  padding: 20px;
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  grid-gap: 30px;
-} */
 
-.recentOrders {
+.tabEncad {
+  font-family: "Playfair Display", serif;
   position: relative;
   display: grid;
   min-height: 100px;
@@ -123,7 +124,33 @@ body {
   border-radius: 20px;
   margin-top: 100px;
   margin-left: 400px;
-  margin-right: 50px;
+  margin-right: 40px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 15px;
+
+}
+
+.header h2 {
+  font-weight: 50;
+  color: var(--blue);
+}
+.recentOrders {
+  font-family: "Playfair Display", serif;
+  position: relative;
+  display: grid;
+  min-height: 100px;
+  background: var(--white);
+  padding: 20px;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
+  margin-top: 100px;
+  margin-left: 400px;
+  margin-right: 18px;
 }
 
 .cardHeader {
@@ -145,17 +172,15 @@ body {
 }
 
 table {
-  all: unset;
   width: 100%;
   border-collapse: collapse;
-  margin-top: 0px;
+  margin-top: 1px;
 }
 table thead td {
   font-weight: 600;
 }
 .recentOrders table tr {
   color: var(--black1);
-  /* border-bottom: 100px solid hsla(0, 87%, 40%, 0.748); */
 }
 .recentOrders table tr:last-child {
   border-bottom: none;
@@ -179,10 +204,7 @@ table thead td {
   opacity: 1;
   display: block;
 }
-/* .recentOrders table tbody tr:hover {
-  background: var(--blue);
-  color: var(--white);
-} */
+
 .recentOrders table tr td {
   padding: 10px;
 }
@@ -219,7 +241,8 @@ table thead td {
   font-size: 14px;
   font-weight: 500;
 }
-.encours {
+.encours,
+.libre {
   padding: 4px 4px;
   background: #1795ce;
   color: var(--white);
@@ -228,7 +251,8 @@ table thead td {
   font-weight: 500;
 }
 
-.refusee {
+.refusee,
+.occupee {
   padding: 4px 4px;
   background: #ff0505;
   color: var(--white);
@@ -237,48 +261,14 @@ table thead td {
   font-weight: 500;
 }
 
-/* .effect {
-  color: var(--blue);
+.addEncadrent {
+  position: relative;
+  padding: 5px 10px;
+  background: var(--blue);
+  text-decoration: none;
+  color: var(--white);
+  border-radius: 6px;
 }
-.effect::after,
-.effect::before {
-  content: "";
-  display: block;
-  position: absolute;
-  width: 20%;
-  height: 20%;
-  border: 2.5px solid;
-  transition: all 0.6s ease;
-  border-radius: 2px;
-}
-
-.effect::after {
-  bottom: 0;
-  right: 0;
-  border-top-color: transparent;
-  border-left-color: transparent;
-  border-bottom-color: var(--blue);
-  border-right-color: var(--blue);
-}
-
-.effect::before {
-  top: 0;
-  left: 0;
-  border-bottom-color: transparent;
-  border-right-color: transparent;
-  border-top-color: var(--blue);
-  border-left-color: var(--blue);
-}
-
-.effect:hover:after,
-.effect:hover:before {
-  border-bottom-color: var(--blue);
-  border-right-color: var(--blue);
-  border-top-color: var(--blue);
-  border-left-color: var(--blue);
-  width: 100%;
-  height: 100%;
-} */
 /* ====================== Responsive Design ========================== */
 @media (max-width: 991px) {
   .navigation {
@@ -289,18 +279,6 @@ table thead td {
     left: 0;
   }
 }
-
-/* @media (max-width: 768px) {
-   {
-    grid-template-columns: 1fr;
-  }
-  .recentOrders {
-    overflow-x: auto;
-  }
-  .inProgress {
-    white-space: nowrap;
-  }
-} */
 
 @media (max-width: 480px) {
   .navigation {
@@ -325,4 +303,50 @@ table thead td {
 
 .custom-textarea:focus {
   border-color: #007bff;
+}
+
+/**=========================== MODAL ==========================**/
+.modal-content {
+  padding: 20px;
+}
+
+h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+p {
+  margin-bottom: 5px;
+}
+
+legend {
+  font-size: 15px;
+  font-weight: 550;
+  padding: 10px;
+}
+
+fieldset {
+  padding: 20px;
+}
+
+.formation-item {
+  margin-bottom: 20px;
+}
+
+.formation-heading {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.experience-item {
+  margin-bottom: 20px;
+}
+
+.projet-item {
+  margin-bottom: 20px;
+}
+
+/** ==================== Filter Button =================== **/
+.filterButton {
+  margin-left: 650px;
 }

@@ -12,6 +12,7 @@ import {
     get_satgiaire_refuse,
     get_satgiaire_active,
     get_satgiaire_archive,
+    get_encadrent,
 } from "../services/user-index";
 import pool from "../Database/index";
 import jwt from "jsonwebtoken";
@@ -45,6 +46,16 @@ export async function getStagiaire(_: Request, response: Response) {
     } catch (error) {
         console.error("Failed to get stagiaire:", error.message);
         return response.status(500).json({ error: "Failed to get stagiaire" });
+    }
+}
+export async function getEncadrent(_: Request, response: Response) {
+    try {
+        const res = await get_encadrent();
+        console.log("ress: ", res.rows);
+        return response.status(200).json({ result: res.rows });
+    } catch (error) {
+        console.error("Failed to get Encadrent:", error.message);
+        return response.status(500).json({ error: "Failed to get Encadrent" });
     }
 }
 

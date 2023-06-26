@@ -1,5 +1,4 @@
 import React from "react";
-import "./styleHeader.css";
 import { Search, Person, Chat, Notifications } from "@mui/icons-material";
 import jwt_decode from "jwt-decode";
 

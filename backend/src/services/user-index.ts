@@ -164,6 +164,28 @@ export const get_satgiaire_accepte = async (): Promise<any> => {
     });
 };
 
+export const get_encadrent = async (): Promise<any> => {
+    return new Promise((resolve, reject) => {
+        pool.query(
+            `SELECT * FROM users WHERE role='encadreur'`,
+
+            (error: Error, response: Response) => {
+                if (error) {
+                    console.log(
+                        "Error executing query (get_encadrent):",
+                        error.message
+                    );
+                    reject(error);
+                } else {
+                    //console.log("Query result:", response);
+                    console.log("Query result:", "SUCESS");
+                    resolve(response);
+                }
+            }
+        );
+    });
+};
+
 interface UserInfo {
     formations: {
         niveau: string;
@@ -206,15 +228,15 @@ export const add_user = async (user: User): Promise<any> => {
         const sql = `INSERT INTO users(username, email, password, userphone, role, status, isadmin, infor)
         VALUES ('${user.name}', '${user.email}' , '${user.password}' , ${
             user.phone
-        } , '${user.role}' , '${user.status}' , false, '${JSON.stringify(
-            user.infor
-        )}'::jsonb );`;
+        } , '${user.role}' , '${user.status}' , ${
+            user.isAdmin
+        }, '${JSON.stringify(user.infor)}'::jsonb );`;
         pool.query(sql, (error: Error, response: Response) => {
             if (error) {
                 console.log("Error executing query (add_user):", error.message);
                 reject(error);
             } else {
-                console.log("Query result:", response);
+                console.log("Query result:", "SUCCESS");
                 resolve(response);
             }
         });

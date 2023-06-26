@@ -1,7 +1,10 @@
 import React, { useState } from "react";
-import "../../assets/Accueil.css";
-import { HomeOutlined } from "@ant-design/icons";
-const NavigationMenu: React.FC = () => {
+
+interface NavigationMenuProps {
+  setActivePage: (page: string) => void;
+}
+
+const NavigationMenu: React.FC<NavigationMenuProps> = ({ setActivePage }) => {
   const [activeItem, setActiveItem] = useState<number | null>(null);
   const list = [
     "Name",
@@ -13,49 +16,32 @@ const NavigationMenu: React.FC = () => {
     "TeamWork",
     "Deconnexion",
   ];
-  const listHref = [
-    "",
-    "/stagiaires",
-    "/Profil",
-    "/Encadrents",
-    "/Messages",
-    "/Archives",
-    "/TeamWork",
-    "/",
-  ];
-  const listIcon = [<></>, <HomeOutlined />];
-  const handleMouseOver = (index: number) => {
+  const listHref = ["", "#", "#", "#", "#", "#", "#", "/"];
+  // const handleMouseOver = (index: number) => {
+  //   setActiveItem(index);
+  // };
+  const handleItemClick = (index: number) => {
     setActiveItem(index);
+    setActivePage(list[index]);
   };
 
-  const icons = ["", "../assets/Images/Icones/1.png", ""];
-  // const handleToggleClick = () => {
-  //   // toggle logic
-  // };
-
   return (
-    <div>
-      {/* {<div className="toggle" onClick={handleToggleClick}>
-      </div>} */}
-
-      <div className="navigation">
-        <ul>
-          {list.map((item, index) => (
-            <li
-              key={index}
-              className={activeItem === index ? "hovered" : ""}
-              onClick={() => handleMouseOver(index)}
-            >
-              <a href={listHref[index]}>
-                <span className="icon">
-                  {listIcon[index]}
-                </span>
-                <span className="title">{item}</span>
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
+    <div className="navigation">
+      <ul>
+        {list.map((item, index) => (
+          <li
+            key={index}
+            className={activeItem === index ? "hovered" : ""}
+            onClick={() => handleItemClick(index)}
+            // onClick={() => handleMouseOver(index)}
+          >
+            <a href={listHref[index]}>
+              <span className="icon"></span>
+              <span className="title">{item}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };

@@ -1,5 +1,4 @@
 import React from "react";
-// import "../../assets/MultiStepForm.css";
 
 const FieldSkill = ({
   nextStep,

@@ -1,4 +1,3 @@
-import "./App.css";
 import React from "react";
 import Profile from "./pages/profil/profil";
 import Login from "./pages/login/login";
@@ -13,7 +12,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Login />} />
       <Route path="/profile" element={<Profile />} />
-      <Route path="/accueil" element={<Accueil />} />
+      <Route path="/stagiaires" element={<Accueil />} />
       <Route path="/formCnx" element={<FormCnx />} />
       <Route path="/form" element={<MultiStepForm />} />
     </Routes>
