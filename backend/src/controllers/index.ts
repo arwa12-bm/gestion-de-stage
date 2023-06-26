@@ -41,7 +41,6 @@ export async function getAllUser(_: Request, response: Response) {
 export async function getStagiaire(_: Request, response: Response) {
     try {
         const res = await get_satgiaire();
-        console.log("ress: ", res.rows);
         return response.status(200).json({ result: res.rows });
     } catch (error) {
         console.error("Failed to get stagiaire:", error.message);
@@ -51,7 +50,6 @@ export async function getStagiaire(_: Request, response: Response) {
 export async function getEncadrent(_: Request, response: Response) {
     try {
         const res = await get_encadrent();
-        console.log("ress: ", res.rows);
         return response.status(200).json({ result: res.rows });
     } catch (error) {
         console.error("Failed to get Encadrent:", error.message);
@@ -62,7 +60,6 @@ export async function getEncadrent(_: Request, response: Response) {
 export async function getStagiaireDemandee(_: Request, response: Response) {
     try {
         const res = await get_satgiaire_demande();
-        console.log("res: ", res.rows);
         return response.status(200).json({ result: res.rows });
     } catch (error) {
         console.error("Failed to get stagiaire demandée:", error.message);
@@ -75,7 +72,6 @@ export async function getStagiaireDemandee(_: Request, response: Response) {
 export async function getStagiaireAcceptee(_: Request, response: Response) {
     try {
         const res = await get_satgiaire_accepte();
-        console.log("res: ", res.rows);
         return response.status(200).json({ result: res.rows });
     } catch (error) {
         console.error("Failed to get stagiaire demandée:", error.message);
@@ -88,7 +84,6 @@ export async function getStagiaireAcceptee(_: Request, response: Response) {
 export async function getStagiaireRefusee(_: Request, response: Response) {
     try {
         const res = await get_satgiaire_refuse();
-        console.log("res: ", res.rows);
         return response.status(200).json({ result: res.rows });
     } catch (error) {
         console.error("Failed to get stagiaire demandée:", error.message);
@@ -101,7 +96,6 @@ export async function getStagiaireRefusee(_: Request, response: Response) {
 export async function getStagiaireActivee(_: Request, response: Response) {
     try {
         const res = await get_satgiaire_active();
-        console.log("res: ", res.rows);
         return response.status(200).json({ result: res.rows });
     } catch (error) {
         console.error("Failed to get stagiaire demandée:", error.message);
@@ -114,7 +108,6 @@ export async function getStagiaireActivee(_: Request, response: Response) {
 export async function getStagiaireArchivee(_: Request, response: Response) {
     try {
         const res = await get_satgiaire_archive();
-        console.log("res: ", res.rows);
         return response.status(200).json({ result: res.rows });
     } catch (error) {
         console.error("Failed to get stagiaire demandée:", error.message);
@@ -232,8 +225,6 @@ export async function getUserToken(request: Request, response: Response) {
 
 export async function updateUsers(request: Request, response: Response) {
     try {
-        // const {rows}= await pool.query(' UPDATE users SET email=${request.body.email},password=${request.body.password},username=$4,userphone=${request.body.username},role=${request.body.role},isadmin=${request.body.isadmin},status=${request.body.status} where id=${request.body.id}');
-
         const { rows } = await pool.query(
             " UPDATE users SET email=$2,password=$3,username=$4,userphone=$5,role=$6,isadmin=$7,status=$8 where id=$1 ",
             [
@@ -255,8 +246,6 @@ export async function updateUsers(request: Request, response: Response) {
 }
 export async function updateUsersProfile(request: Request, response: Response) {
     try {
-        // const {rows}= await pool.query(' UPDATE users SET email=${request.body.email},password=${request.body.password},username=$4,userphone=${request.body.username},role=${request.body.role},isadmin=${request.body.isadmin},status=${request.body.status} where id=${request.body.id}');
-
         const { rows } = await pool.query(
             " UPDATE users SET email=$2,username=$3,userphone=$4  where id=$1 ",
             [
