@@ -45,7 +45,7 @@ body {
   position: relative;
 }
 
-/*Hide all except first fieldset*/
+/* Hide all except first fieldset */
 #msform fieldset:not(:first-of-type) {
   display: none;
 }
@@ -166,7 +166,7 @@ select {
 input[id="blue"] {
   display: none;
 }
-/* 
+
 label {
   display: inline-block;
   padding: 10px 20px;
@@ -178,10 +178,8 @@ label {
   cursor: pointer;
   transition: background-color 0.3s, border-color 0.3s, color 0.3s,
     box-shadow 0.3s;
-} */
+}
 
-
-/* 
 input[id="blue"]:checked + label {
   color: rgb(49, 49, 87);
   border-color: currentColor;
@@ -201,7 +199,7 @@ label:hover {
   border-color: currentColor;
   box-shadow: 0 0 10px currentColor, 0 0 20px currentColor,
     0 0 30px currentColor;
-} */
+}
 
 /** Icone + et - **/
 .supprime {

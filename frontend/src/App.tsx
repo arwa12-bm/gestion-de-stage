@@ -1,6 +1,6 @@
 import React from "react";
 import Profile from "./pages/profil/profil";
-import Login from "./pages/login/login";
+// import Login from "./pages/login/login";
 
 //components
 import Accueil from "./components/Accueil";
@@ -10,10 +10,10 @@ import { Routes, Route } from "react-router-dom";
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Login />} />
+      {/* <Route path="/" element={<Login />} /> */}
       <Route path="/profile" element={<Profile />} />
       <Route path="/stagiaires" element={<Accueil />} />
-      <Route path="/formCnx" element={<FormCnx />} />
+      <Route path="/" element={<FormCnx />} />
       <Route path="/form" element={<MultiStepForm />} />
     </Routes>
   );

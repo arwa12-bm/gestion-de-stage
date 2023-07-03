@@ -10,7 +10,7 @@ const NavigationMenu: React.FC<NavigationMenuProps> = ({ setActivePage }) => {
     "Name",
     "Accueil",
     "Profil",
-    "Encadrents",
+    "Encadrants",
     "Messages",
     "Archivage",
     "TeamWork",

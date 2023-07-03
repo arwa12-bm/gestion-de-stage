@@ -179,7 +179,7 @@ const Demandes: React.FC = () => {
       <div className="cardHeader">
         <h2>Demandes de stages</h2>
         <span className="filterButton">
-          <FilterButton onFilter={handleFilter} />
+          <FilterButton onFilter={handleFilter} tableName="stagiaires" />
         </span>
         <a href="#" className="btn" onClick={handleViewAll}>
           {viewText}

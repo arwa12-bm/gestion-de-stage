@@ -3,7 +3,7 @@ import { useState } from "react";
 import "../assets/Accueil.css";
 import NavigationMenu from "./AccueilComponents/Navigation";
 import Demandes from "./AccueilComponents/TableDemande";
-import Encadrent from "./AccueilComponents/TableEncadrent";
+import Encadrant from "./AccueilComponents/TableEncadrent";
 import Archive from "./AccueilComponents/TableArchive";
 
 const Accueil = () => {
@@ -13,7 +13,7 @@ const Accueil = () => {
     <div className="container">
       <NavigationMenu setActivePage={setActivePage} />
       {activePage === "Accueil" && <Demandes />}
-      {activePage === "Encadrents" && <Encadrent />}
+      {activePage === "Encadrants" && <Encadrant />}
       {activePage === "Archivage" && <Archive />}
     </div>
   );

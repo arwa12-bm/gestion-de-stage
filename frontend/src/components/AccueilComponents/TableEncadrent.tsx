@@ -6,6 +6,7 @@ import {
 } from "@ant-design/icons";
 import { Button, message, Modal } from "antd";
 import FilterButton from "./Filter";
+import FormEncadrent from "./FormEncad";
 
 interface InformationUser {
   stagiaires: {
@@ -25,14 +26,21 @@ interface UserData {
   infor: InformationUser;
 }
 
-const Encadrent: React.FC = () => {
+const Encadrant: React.FC = () => {
   const [isSaving, setIsSaving] = useState(false);
   const [dataArray, setData] = useState<UserData[]>([]);
   const [selectedFilter, setSelectedFilter] = useState<string>("");
+  const [visible, setVisible] = useState(false);
 
-  const handleAddEncad = () =>{
-    
-  }
+  const handleCreate = (values: UserData) => {
+    submitForm(values);
+    console.log("Valeurs du formulaire:", values);
+    setVisible(false);
+  };
+
+  const handleCancel = () => {
+    setVisible(false);
+  };
   const handleSave = (id: number, status: string) => {
     setIsSaving(true);
     setTimeout(async () => {
@@ -68,6 +76,36 @@ const Encadrent: React.FC = () => {
     setSelectedFilter(filter);
   };
 
+  // const handleSubmit = (
+  //   e: React.FormEvent<HTMLFormElement>,
+  //   values: UserData
+  // ) => {
+  //   console.log("HANDLESUBMIT appeleé");
+  //   e.preventDefault();
+  // };
+
+  /*********** SUBMIT FUNCTION ***********/
+  const submitForm = async (data: UserData): Promise<void> => {
+    console.log("SUBMITFORM appelé !!");
+    try {
+      const response = await fetch("http://localhost:5100/stage-demandes", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        throw new Error(
+          "Une erreur s'est produite lors de la soumission du formulaire."
+        );
+      }
+      console.log("Formulaire soumis avec succès !");
+    } catch (error) {
+      console.error("error add: ", error.message);
+    }
+  };
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -93,11 +131,19 @@ const Encadrent: React.FC = () => {
   return (
     <div className="tabEncad">
       <div className="header">
-        <h2>Encadrents</h2>
-        <span className="filterButton"></span>
-        <span className="addEncadrent" onClick={handleAddEncad}>
-          <PlusOutlined /> Ajouter ENCADRENT
+        <h2>Encadrants</h2>
+        <span className="filterButtonEncd">
+          <FilterButton onFilter={handleFilter} tableName="encadrents" />
         </span>
+        <span className="addEncadrent" onClick={() => setVisible(true)}>
+          <PlusOutlined /> Ajouter ENCADRANT
+        </span>
+        <FormEncadrent
+          open={visible}
+          onCreate={handleCreate}
+          onCancel={handleCancel}
+          // handleSubmit={handleSubmit}
+        />
       </div>
       <table>
         <thead>
@@ -183,4 +229,4 @@ const Encadrent: React.FC = () => {
   );
 };
 
-export default Encadrent;
+export default Encadrant;

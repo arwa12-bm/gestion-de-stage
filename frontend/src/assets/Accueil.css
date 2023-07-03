@@ -132,7 +132,6 @@ body {
   justify-content: space-between;
   align-items: flex-start;
   padding: 15px;
-
 }
 
 .header h2 {
@@ -268,6 +267,7 @@ table thead td {
   text-decoration: none;
   color: var(--white);
   border-radius: 6px;
+  cursor: pointer;
 }
 /* ====================== Responsive Design ========================== */
 @media (max-width: 991px) {
@@ -349,4 +349,19 @@ fieldset {
 /** ==================== Filter Button =================== **/
 .filterButton {
   margin-left: 650px;
+}
+.filterButtonEncd {
+  margin-left: 600px;
+}
+
+/** ==================== Modal-Encadr ===================== **/
+.modal-Encad {
+  background: transparent;
+  /* border: 0 none;
+  border-radius: 3px;
+  box-shadow: 0 0 15px 1px rgb(49, 49, 87);
+  padding: 20px 30px;
+  box-sizing: border-box;
+  width: 95%;
+  margin: 05 10%; */
 }

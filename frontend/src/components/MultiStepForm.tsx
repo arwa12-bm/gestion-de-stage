@@ -10,21 +10,14 @@ import FieldDone from "./FormComponents/FieldDone";
 import userDataReducer, {
   initialState,
 } from "../initialStates/userInitialState";
-// import { useForm } from "react-hook-form";
-//import { yupResolver } from "@hookform/resolvers/yup";
 
 const MultiStepForm: React.FC = () => {
-  /****************************/
-  /******** FUNCTIONS ********/
   /**************************/
-
   const [userData, dispatch] = React.useReducer(userDataReducer, initialState);
-  console.log("userData: ", userData);
-
   const [step, setStep] = useState<number>(1);
   const [selectedType, setSelectedType] = useState<string>("");
   const [divCount, setDivCount] = useState<number>(1);
-  // const { register } = useForm();
+
   const nextStep = () => {
     setStep(step + 1);
     if (step === 2) addFormation();
@@ -59,16 +52,11 @@ const MultiStepForm: React.FC = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     console.log("HANDLESUBMIT appeleé");
     e.preventDefault();
-    // Vous pouvez valider les données ici avant de les enregistrer dans l'état userData
     submitForm(userData);
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    console.log("valuee", value);
-
-    //Valider les données:
-
     // Gérer les propriétés imbriquées
     if (name.includes(".")) {
       const [parent, child] = name.split(".");
@@ -153,12 +141,9 @@ const MultiStepForm: React.FC = () => {
           "Une erreur s'est produite lors de la soumission du formulaire."
         );
       }
-
-      // Gérer la réponse réussie du backend
       console.log("Formulaire soumis avec succès !");
     } catch (error) {
-      // Gérer les erreurs de soumission du formulaire
-      console.error("error add: ",error.message);
+      console.error("error add: ", error.message);
     }
   };
 
