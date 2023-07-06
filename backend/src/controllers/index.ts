@@ -13,6 +13,7 @@ import {
     get_satgiaire_active,
     get_satgiaire_archive,
     get_encadrent,
+    verifier_data_user_login,
 } from "../services/user-index";
 import pool from "../Database/index";
 import jwt from "jsonwebtoken";
@@ -51,7 +52,7 @@ export async function getStagiaire(_: Request, response: Response) {
 export async function getEncadrent(_: Request, response: Response) {
     try {
         const res = await get_encadrent();
-        console.log("ress: ", res.rows);
+        //console.log("ress: ", res.rows);
         return response.status(200).json({ result: res.rows });
     } catch (error) {
         console.error("Failed to get Encadrent:", error.message);
@@ -62,7 +63,7 @@ export async function getEncadrent(_: Request, response: Response) {
 export async function getStagiaireDemandee(_: Request, response: Response) {
     try {
         const res = await get_satgiaire_demande();
-        console.log("res: ", res.rows);
+        // console.log("res: ", res.rows);
         return response.status(200).json({ result: res.rows });
     } catch (error) {
         console.error("Failed to get stagiaire demandée:", error.message);
@@ -174,6 +175,27 @@ export async function getUserById(request: Request, response: Response) {
     }
 }
 
+export async function loginAuth(request: Request, response: Response) {
+    try {
+        const { email, password } = request.body;
+        const res = await verifier_data_user_login(email, password);
+        console.log("RESULTAT: ", res.rows);
+
+        if (res.rows.role === "admin") {
+            const token = "votre-token-generé";
+            return response.json({ token });
+        } else {
+            return response
+                .status(401)
+                .json({ message: "Identifiants invalides" });
+        }
+    } catch (error) {
+        console.error("Failed to Login Auth demandée:", error.message);
+        return response
+            .status(500)
+            .json({ error: "Failed to Login Auth demandée" });
+    }
+}
 export async function getUserByEmail(request: Request, response: Response) {
     try {
         const email = request.query.email;
@@ -191,20 +213,21 @@ export async function getUserToken(request: Request, response: Response) {
     try {
         const email = request.body.email;
 
-        console.log(email);
+        //console.log(email);
         const result = await pool.query(`select * from users where email=$1`, [
             email,
         ]);
-        const id_user = result.rows[0].id;
-        const post = await pool.query(
-            `select * from posts where id_user=${id_user}`
-        );
-        console.log(result);
-        console.log(post.rows);
+        //const id_user = result.rows[0].id;
+        // const post = await pool.query(
+        //     `select * from posts where id_user=${id_user}`
+        // );
+        //console.log(result);
+        //console.log(post.rows);
         if (
             result.rows[0].email &&
             result.rows[0].password === request.body.password
         ) {
+            console.log("OK");
             const token = jwt.sign(
                 {
                     username: result.rows[0].username,
@@ -214,11 +237,11 @@ export async function getUserToken(request: Request, response: Response) {
                     email: result.rows[0].email,
                     status: result.rows[0].status,
                     id: result.rows[0].id,
-                    post: post.rows,
+                    //post: post.rows,
                 },
                 process.env.JWT_KEY
             );
-
+            console.log(token);
             return response.status(200).json({ error: false, result: token });
         } else {
             return response
@@ -226,7 +249,7 @@ export async function getUserToken(request: Request, response: Response) {
                 .json({ error: true, message: "user not found" });
         }
     } catch (err) {
-        console.log(err.message);
+        console.log("***", err.message);
     }
 }
 

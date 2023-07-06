@@ -68,7 +68,7 @@ export const get_satgiaire_demande = async (): Promise<any> => {
         const sql = `SELECT * FROM users WHERE role='stagiaire' AND status = 'Demande en cours'`;
 
         pool.query(sql, (error: Error, response: Response) => {
-            console.log("sql:", sql);
+            //console.log("sql:", sql);
             if (error) {
                 // console.log("sql: ", sql);
                 console.log(
@@ -243,7 +243,7 @@ export const add_user = async (user: User): Promise<any> => {
     });
 };
 
-export const delete_user = async (id: number): Promise<any> => {
+export const delete_user = async (id: number): Promise<Response> => {
     return new Promise((resolve, reject) => {
         pool.query(
             `DELETE FROM users WHERE id=${id}`,
@@ -307,6 +307,30 @@ export const update_status_user = async (
                     reject(error);
                 } else {
                     console.log("Query result: SUCESS");
+                    resolve(response);
+                }
+            }
+        );
+    });
+};
+
+export const verifier_data_user_login = async (
+    email: string,
+    password: string
+): Promise<any> => {
+    return new Promise((resolve, reject) => {
+        pool.query(
+            `SELECT id, role, isadmin FROM users WHERE email='${email}' AND password='${password}';`,
+            (error: Error, response: Response) => {
+                if (error) {
+                    console.log(
+                        "Error executing query (update_status_user):",
+                        error.message
+                    );
+                    reject(error);
+                } else {
+                    console.log("Query result: SUCESS");
+                    //console.log("RESPONSE: ", response);
                     resolve(response);
                 }
             }

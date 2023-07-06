@@ -14,6 +14,7 @@ import {
     getStagiaireArchivee,
     getStagiaireActivee,
     getEncadrent,
+    loginAuth,
 } from "@controllers/index";
 
 export const routerUser = express.Router();
@@ -45,3 +46,5 @@ routerUser.route("/stage-demandes").post(addUser);
 routerUser.route("/encadrent-Add").post(addUser);
 
 routerUser.route("/encadrents").get(getEncadrent);
+
+routerUser.route("/login").post(loginAuth);

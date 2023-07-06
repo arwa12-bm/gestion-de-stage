@@ -3,7 +3,6 @@ import { Modal } from "antd";
 import "../../assets/Accueil.css";
 
 interface UserData {
-  id: number;
   username: string;
   email: string;
   userphone: string;

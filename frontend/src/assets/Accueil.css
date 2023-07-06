@@ -17,10 +17,6 @@
   --black2: #999;
 }
 
-.page-content {
-  font-family: "Playfair Display", serif;
-}
-
 html {
   min-height: 100vh;
   background: rgb(241, 241, 245);
