@@ -32,12 +32,13 @@ const FormCnx: React.FC = () => {
         },
         body: JSON.stringify(data),
       });
+      console.log("response: ", response);
       console.log("DATA: ", data);
-      navigate("/stagiaires");
+      if (response.ok) navigate("/stagiaires");
 
       if (!response.ok) {
         throw new Error(
-          "Une erreur s'est produite lors de la soumission du formulaire."
+          "Une erreur s'est produite lors de la soumission du formulaire." 
         );
       }
     } catch (error) {

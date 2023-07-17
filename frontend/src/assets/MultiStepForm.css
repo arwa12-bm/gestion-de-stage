@@ -9,6 +9,53 @@ html {
   background-repeat: no-repeat;
 }
 
+/*Button Envoyer*/
+
+/* .envoyer {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+input[id="blue"] {
+  display: none;
+}
+
+label {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #ccc;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s, color 0.3s,
+    box-shadow 0.3s;
+}
+
+input[id="blue"]:checked + label {
+  color: rgb(49, 49, 87);
+  border-color: currentColor;
+  box-shadow: 0 0 10px currentColor, 0 0 20px currentColor,
+    0 0 30px currentColor;
+}
+label:hover,
+input[id="blue"]:checked + label:hover {
+  color: rgb(49, 49, 87);
+  border-color: currentColor;
+  box-shadow: 0 0 10px currentColor, 0 0 20px currentColor,
+    0 0 30px currentColor, 0 0 40px currentColor, 0 0 50px currentColor;
+}
+
+label:hover {
+  color: rgb(49, 49, 87);
+  border-color: currentColor;
+  box-shadow: 0 0 10px currentColor, 0 0 20px currentColor,
+    0 0 30px currentColor;
+} */
+
+
+
 /*** Message Error ***/
 /* 
 .errror-massage {

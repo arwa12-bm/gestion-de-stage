@@ -7,7 +7,11 @@ import {
 import { Button, message, Modal } from "antd";
 import FilterButton from "./Filter";
 import FormEncadrent from "./FormEncad";
+import { FormStag } from "./FormStag";
 
+/**
+ * Uncaught TypeError: Cannot read properties of undefined (reading 'length') 130
+ */
 interface InformationUser {
   stagiaires: {
     id: number;
@@ -30,46 +34,56 @@ const Encadrant: React.FC = () => {
   const [isSaving, setIsSaving] = useState(false);
   const [dataArray, setData] = useState<UserData[]>([]);
   const [selectedFilter, setSelectedFilter] = useState<string>("");
-  const [visible, setVisible] = useState(false);
+  const [visibleFormEncadr, setVisibleFormEncadr] = useState(false);
+  const [visibleFormStag, setVisibleFormStag] = useState(false);
 
   const handleCreate = (values: UserData) => {
     submitForm(values);
     console.log("Valeurs du formulaire:", values);
-    setVisible(false);
+    setVisibleFormEncadr(false);
   };
 
-  const handleCancel = () => {
-    setVisible(false);
+  const handleCancelFormEncadr = () => {
+    setVisibleFormEncadr(false);
   };
+
+  const handleCancelFormStag = () => {
+    setVisibleFormStag(false);
+  };
+
   const handleSave = (id: number, status: string) => {
-    setIsSaving(true);
-    setTimeout(async () => {
-      try {
-        const response = await fetch(
-          `http://localhost:5100/updateEncadrent?id=${id}&status=${status}`,
-          {
-            method: "PUT",
-          }
-        );
+    console.log("status", status);
+    console.log("id: ", id);
+    console.log("OK !!");
+    setVisibleFormStag(true);
+    // setIsSaving(true);
+    // setTimeout(async () => {
+    //   try {
+    //     const response = await fetch(
+    //       `http://localhost:5100/updateEncadrent?id=${id}&status=${status}`,
+    //       {
+    //         method: "PUT",
+    //       }
+    //     );
 
-        if (response.ok) {
-          const updatedDataArray = dataArray.map((item) => {
-            if (item.id === id) {
-              return { ...item, status };
-            }
-            return item;
-          });
-          setData(updatedDataArray);
-          message.success("Mise à jour réussie !");
-        } else {
-          throw new Error("Erreur lors de l'enregistrement");
-        }
-      } catch (error) {
-        console.error(error.message);
-      }
+    //     if (response.ok) {
+    //       const updatedDataArray = dataArray.map((item) => {
+    //         if (item.id === id) {
+    //           return { ...item, status };
+    //         }
+    //         return item;
+    //       });
+    //       setData(updatedDataArray);
+    //       message.success("Mise à jour réussie !");
+    //     } else {
+    //       throw new Error("Erreur lors de l'enregistrement");
+    //     }
+    //   } catch (error) {
+    //     console.error(error.message);
+    //   }
 
-      setIsSaving(false);
-    }, 2000);
+    //   setIsSaving(false);
+    // }, 2000);
   };
 
   const handleFilter = (filter: string) => {
@@ -86,7 +100,7 @@ const Encadrant: React.FC = () => {
 
   /*********** SUBMIT FUNCTION ***********/
   const submitForm = async (data: UserData): Promise<void> => {
-    console.log("SUBMITFORM appelé !!");
+    //console.log("SUBMITFORM appelé !!");
     try {
       const response = await fetch("http://localhost:5100/stage-demandes", {
         method: "POST",
@@ -109,7 +123,7 @@ const Encadrant: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        console.log(selectedFilter);
+        //console.log(selectedFilter);
         const response = await fetch(
           `http://localhost:5100/encadrents${selectedFilter}`
         );
@@ -135,13 +149,16 @@ const Encadrant: React.FC = () => {
         <span className="filterButtonEncd">
           <FilterButton onFilter={handleFilter} tableName="encadrents" />
         </span>
-        <span className="addEncadrent" onClick={() => setVisible(true)}>
+        <span
+          className="addEncadrent"
+          onClick={() => setVisibleFormEncadr(true)}
+        >
           <PlusOutlined /> Ajouter ENCADRANT
         </span>
         <FormEncadrent
-          open={visible}
-          onCreate={handleCreate}
-          onCancel={handleCancel}
+          open={visibleFormEncadr}
+          //onCreate={handleCreate}
+          onCancel={handleCancelFormEncadr}
           // handleSubmit={handleSubmit}
         />
       </div>
@@ -192,6 +209,10 @@ const Encadrant: React.FC = () => {
                   }}
                   disabled={item.infor.stagiaires.length === 2}
                 ></Button>
+                <FormStag
+                  open={visibleFormStag}
+                  onCancel={handleCancelFormStag}
+                />
               </td>
               <td>
                 <Button
@@ -211,7 +232,7 @@ const Encadrant: React.FC = () => {
                       : () =>
                           handleSave(
                             item.id,
-                            "Occupé(" + item.infor.stagiaires.length + ")"
+                            "Occupé( + item.infor.stagiaires.length + )"
                           )
                   }
                   loading={isSaving}

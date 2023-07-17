@@ -8,7 +8,10 @@ import Archive from "./AccueilComponents/TableArchive";
 import Message from "./AccueilComponents/Message";
 import Profil from "./AccueilComponents/Profil";
 import TeamWork from "./AccueilComponents/TeamWork";
-
+/**
+ * quand il accepte un stagiaire il va effectuer un mot de passe ou envoyer un mail
+ * @returns 
+ */
 const Accueil = () => {
   const [activePage, setActivePage] = useState("Accueil");
   //console.log(activePage);

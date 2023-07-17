@@ -231,6 +231,8 @@ export const add_user = async (user: User): Promise<any> => {
         } , '${user.role}' , '${user.status}' , ${
             user.isAdmin
         }, '${JSON.stringify(user.infor)}'::jsonb );`;
+        console.log("sql: ", sql);
+        console.log("user ", user);
         pool.query(sql, (error: Error, response: Response) => {
             if (error) {
                 console.log("Error executing query (add_user):", error.message);

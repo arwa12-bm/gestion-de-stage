@@ -1,4 +1,5 @@
 import React, { ChangeEvent, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../assets/MultiStepForm.css";
 import ProgressBar from "./FormComponents/ProgressBar";
 import FieldContact from "./FormComponents/FieldContact";
@@ -17,6 +18,7 @@ const MultiStepForm: React.FC = () => {
   const [step, setStep] = useState<number>(1);
   const [selectedType, setSelectedType] = useState<string>("");
   const [divCount, setDivCount] = useState<number>(1);
+  const navigate = useNavigate();
 
   const nextStep = () => {
     setStep(step + 1);
@@ -135,6 +137,7 @@ const MultiStepForm: React.FC = () => {
         },
         body: JSON.stringify(data),
       });
+      if (response.ok) navigate("/sucess");
 
       if (!response.ok) {
         throw new Error(

@@ -16,7 +16,7 @@ const NavigationMenu: React.FC<NavigationMenuProps> = ({ setActivePage }) => {
     "TeamWork",
     "Deconnexion",
   ];
-  const listHref = ["", "#", "#", "#", "#", "#", "#", "/"];
+  const listHref = ["", "#1", "#2", "#3", "#4", "#5", "#6", "/"];
   // const handleMouseOver = (index: number) => {
   //   setActiveItem(index);
   // };

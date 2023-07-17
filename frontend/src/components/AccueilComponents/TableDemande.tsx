@@ -5,9 +5,11 @@ import {
   FolderAddOutlined,
   PhoneOutlined,
   MailOutlined,
+  FormOutlined,
 } from "@ant-design/icons";
 import { Button, message, Modal } from "antd";
 import FilterButton from "./Filter";
+import { RemarqueModal } from "./RemarqueModal";
 
 interface InformationUser {
   formations: {
@@ -41,9 +43,32 @@ interface UserData {
   username: string;
   email: string;
   userphone: string;
-  remarques: string;
+  remarques: Remarque;
   status: string;
   infor: InformationUser;
+}
+
+interface Remarque {
+  nbre_d_etoile: number;
+  innovation: boolean;
+  communication: string;
+  compétences_techniques: string;
+  collaboration: string;
+  initiative: boolean;
+  organisation: string;
+  pontialité: string;
+  autonomie: boolean;
+  adaptabilité: string;
+  qualité_travail: string;
+  résolution_problèmes: string;
+  gestion_temps: string;
+  esprit_equipe: string;
+  créativité: string;
+  leadership: string;
+  réactivité: string;
+  analyse: string;
+  persévérance: string;
+  commentaire_supplémentaire: string;
 }
 
 const Demandes: React.FC = () => {
@@ -56,7 +81,7 @@ const Demandes: React.FC = () => {
   );
 
   const [selectedFilter, setSelectedFilter] = useState<string>("demandees");
-
+  const [visible, setVisible] = useState(false);
   const handleSave = (id: number, status: string) => {
     setIsSaving(true);
 
@@ -153,6 +178,9 @@ const Demandes: React.FC = () => {
     setModalStates(newModalStates);
   };
 
+  const onCancel = () => {
+    setVisible(false);
+  };
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -322,11 +350,13 @@ const Demandes: React.FC = () => {
                 </span>
               </td>
               <td>
-                <textarea
+                {/* <textarea
                   className="custom-textarea"
                   rows={4}
                   value={item.remarques}
-                />
+                /> */}
+                <FormOutlined onClick={() => setVisible(true)} />
+                <RemarqueModal open={visible} onCancel={onCancel} />
               </td>
               <td>
                 <Button

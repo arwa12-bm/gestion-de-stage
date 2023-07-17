@@ -170,11 +170,15 @@ export async function getUserById(request: Request, response: Response) {
 
 export async function loginAuth(request: Request, response: Response) {
     try {
-        const { email, password } = request.body;
-        const res = await verifier_data_user_login(email, password);
+        const res = await verifier_data_user_login(
+            request.body.email,
+            request.body.password
+        );
+        console.log("res: ", res);
         console.log("RESULTAT: ", res.rows);
 
-        if (res.rows.role === "admin") {
+        if (res.rows[0].isadmin) {
+            console.log("OK!");
             const token = "votre-token-generé";
             return response.json({ token });
         } else {

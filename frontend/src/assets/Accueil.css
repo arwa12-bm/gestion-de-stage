@@ -365,3 +365,8 @@ fieldset {
   width: 95%;
   margin: 05 10%; */
 }
+
+input[type="checkbox"] {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0; }
