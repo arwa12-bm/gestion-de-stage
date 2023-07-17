@@ -1,4 +1,6 @@
 import React from "react";
+import { Routes, Route } from "react-router-dom";
+
 import Profile from "./pages/profil/profil";
 // import Login from "./pages/login/login";
 
@@ -6,7 +8,7 @@ import Profile from "./pages/profil/profil";
 import Accueil from "./components/Accueil";
 import FormCnx from "./components/FormCnx";
 import MultiStepForm from "./components/MultiStepForm";
-import { Routes, Route } from "react-router-dom";
+
 function App() {
   return (
     <Routes>

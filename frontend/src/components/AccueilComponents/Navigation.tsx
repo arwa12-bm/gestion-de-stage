@@ -7,7 +7,7 @@ interface NavigationMenuProps {
 const NavigationMenu: React.FC<NavigationMenuProps> = ({ setActivePage }) => {
   const [activeItem, setActiveItem] = useState<number | null>(null);
   const list = [
-    "Name",
+    "",
     "Accueil",
     "Profil",
     "Encadrants",

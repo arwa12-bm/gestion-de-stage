@@ -17,10 +17,11 @@
   --black2: #999;
 }
 
-html {
-  min-height: 100vh;
-  background: rgb(241, 241, 245);
-  background-size: cover;
+/* html {
+} */
+
+.page-content {
+  font-family: "Playfair Display", serif;
 }
 
 body {
@@ -33,6 +34,9 @@ body {
 .container {
   position: absolute;
   width: 100%;
+  min-height: 100vh;
+  background: rgb(241, 241, 245);
+  background-size: cover;
 }
 
 /* =============== Navigation ================ */
