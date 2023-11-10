@@ -1,5 +1,8 @@
 
+.createAccount{
 
+  
+}
   
   .title{
     color:#f80759;
@@ -15,8 +18,16 @@
   .loginRight {
     flex: 1;
     display: flex;
+     width:50%;
+  
+    display: flex;
     flex-direction: column;
     justify-content: center;
+    position:absolute;
+    top: 50px;
+   right:100px;
+   
+    z-index: 1000;
     
   }
   

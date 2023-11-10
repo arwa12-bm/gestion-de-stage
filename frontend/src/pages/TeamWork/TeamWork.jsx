@@ -1,20 +1,17 @@
-import { Input } from "@mui/material";
-import "./post.css";
+import "./TeamWork.css";
 import { MoreVert } from "@mui/icons-material";
 import Axios  from "axios";
 import jwt_decode from "jwt-decode";
 import { useState,useEffect } from "react";
+import NavigationMenuProfile from "../../components/AccueilComponents/NavigationProfile";
+import Header from '../../components/header/Header';
 
-export default function Post() {
+export default function TeamWork() {
   const [like,setLike] = useState(0)
   const [isLiked,setIsLiked] = useState(false)
-  const [isCLicked,setIsCLicked] = useState(false)
+
 
   
-  const commentHandler =()=>{
-    
-    setIsCLicked(!isCLicked)
-  }
   const likeHandler =()=>{
     setLike(isLiked ? like-1 : like+1)
     setIsLiked(!isLiked)
@@ -23,22 +20,32 @@ export default function Post() {
   
 const token =localStorage.getItem('token')
 const user = jwt_decode(token);
+console.log(user.id);
 const[postData,setPostData]=useState([]);
 
 
 useEffect( async () => {
-  const response = await fetch(`http://localhost:5100/api/v2/postuser?id_user=${user.id}`,[user.id]);
+  const response = await fetch(`http://localhost:5100/api/v2/posts`);
 if(response.ok){
    const data = await response.json();
    setPostData([...data])
-  }
-  
-},[user.id])
+  console.log("DATAAAA",data)
+}
 
+},[])
+
+console.log("POST",postData)
+const post = user.post
+console.log(post)
+
+console.log(typeof post)
   return (
    
-   
-    <div className="post">
+    <>
+    <Header />
+    <div className="TeamPost">
+             <NavigationMenuProfile/>
+
     {postData.map((item) => (
       <div className="postWrapper" key={item.id}>
         <div className="postTop">
@@ -66,47 +73,20 @@ if(response.ok){
         </div>
         <div className="postBottom">
           <div className="postBottomLeft">
-            <img className="likeIcon" src="src/assets/like.png" onClick={likeHandler} alt="" />
-            {/* <img className="likeIcon" src="src/assets/like.png" onClick={likeHandler} alt="" /> */}
+            <img className="likeIcon" src="" onClick={likeHandler} alt="" />
+            <img className="likeIcon" src="" onClick={likeHandler} alt="" />
             <span className="postLikeCounter">{like} people like it</span>
-           
+            <span className="postLikeCounter"> people like it</span>
           </div>
           <div className="postBottomRight">
-          <span className="postCommentText"  onClick={commentHandler}> comments</span>
-         </div> 
-         </div>
-         
-          {isCLicked?
-          
-          <div className="postBottomComment">
-            
-            
-            <input type="text" 
-                placeholder="write your comment" 
-                className="CommentInput"/>
-            {Object.values(item.commentaire).map((comment, index)=>{
-              console.log("comment : ", comment)
-              return (
-                <div key={index} className="postBottomCommentx">
-                  <img
-              className="postProfileImg"
-              src="src/assets/pers.jpg"
-              alt=""
-            />
-                  <span className="Comment">{comment.content}</span>
-                </div>
-              )
-})}
-            </div>
-            :""
-            }
-          
-          
-          
+          <span className="postCommentText"> comments</span>
+            {/* <span className="postCommentText">{post.comment} comments</span> */}
+          </div>
+        </div>
       </div>
     ))}
     </div>
   
-     
+     </>
   );
 }

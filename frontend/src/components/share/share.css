@@ -20,16 +20,18 @@
   }
   
   .shareTop {
-   display: flex;
-  
-    padding: 2%;
-    padding-bottom: 0%;
-  }
-  .shareTop2 {
     display: flex;
-   margin: 1%;
-     padding: 1%;
+  }
+  .shareTopForm{
+     display: flex;
+     margin: 1%;
+     padding: 0.01%;
      background-color: transparent;
+   }
+   .x{
+        padding: 0%;
+        margin-top: 2%;
+      background-color: transparent;
    }
   
   .shareProfileImg {
@@ -50,14 +52,15 @@
   .shareSelect {
     
     border: none;
-   margin-bottom:1%;
-    padding: 2%;
+   margin-left: 2%;
+   margin-bottom: 2%;
+    padding: 1%;
     background-color: transparent;
-    width:80%;
+    width:35%;
   }
   .Add{
     display: flex;
-    padding: 1px;
+   
   }
  
   

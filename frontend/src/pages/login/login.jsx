@@ -24,16 +24,10 @@ export default function Login() {
   const [navigate, setNavigate] = useState(false);
  
 
-  // const verifMail=async (email)=>{
-  //   if(/\w+@\w+\.\w+/.test(email) && response.data[0].email===email){
-  //     return true;
-  //   }else{return false}
-  // }
+
   
   const handleChangeEmail = async (e) => {
      setEmail(e.target.value)
-    //console.log(email)
-   // const response = await Axios.get('http://localhost:5200/api/v1/useremail',{ params: { email: email }})
       
     if(!email ){
       errors.email="Email is requires !"
@@ -42,7 +36,7 @@ export default function Login() {
         errors.email="Email is invalide !"
         e.target.style.borderColor= "red"
     }else {
-      //setEmail(e.target.value)
+     
       errors.email=""
       e.target.style.borderColor= "green"  
     }

@@ -3,8 +3,9 @@ import { useState}from"react";
 import Axios  from "axios";
 import jwt_decode from "jwt-decode";
 import "./CreateAccount.css";
+import Header from '../../components/header/Header';
+import NavigationMenuProfile from "../../components/AccueilComponents/NavigationProfile";
 
- 
 export default function CreateAccount() {
  
   const initialUser ={
@@ -92,13 +93,18 @@ const handleSubmitCreate = async (e) => {
 
 
    return (
-   
+        <>
+         <Header />
+         
+         
+        
+
       <div className="loginWrapper">
-      
+      <NavigationMenuProfile/>
         <div className="loginRight">
+         
           <div className="loginBox">
-
-
+          
             <form  onSubmit={handleSubmitCreate}>
                 
                   <label htmlFor="title" className="title" >Create Account </label>
@@ -155,6 +161,7 @@ const handleSubmitCreate = async (e) => {
           </div>
         </div>
       </div>
-   
+        
+      </>
   );
 }

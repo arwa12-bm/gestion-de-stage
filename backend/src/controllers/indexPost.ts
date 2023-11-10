@@ -70,6 +70,18 @@ export async function insertPosts (request:Request, response: Response) {
         console.log(err.message);
     }
 }
+// export async function insertPostComment (request:Request, response: Response) {
+//     try{
+    
+//         console.log(request.body)
+//        const rows = await pool.query('insert into posts (commentaire)  values($1) ',
+//        [request.body.id_user,request.body.title,request.body.url,request.body.photo,request.body.type_post,request.body.description,request.body.commentaire,request.body.tag,request.body.created_at]);
+//          console.log(rows)
+//      return response.status(200).json({error: false, message: "success"})
+//         }catch(err){
+//         console.log(err.message);
+//     }
+// }
 export async function updatePosts (request:Request, response: Response) {
     try{
 
