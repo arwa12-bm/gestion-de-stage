@@ -1,15 +1,15 @@
 import React, { ChangeEvent, useState } from "react";
-import "../assets/MultiStepForm.css";
-import ProgressBar from "./FormComponents/ProgressBar";
-import FieldContact from "./FormComponents/FieldContact";
-import FieldFormation from "./FormComponents/FieldFormation";
-import FieldExperience from "./FormComponents/FieldExperience";
-import FieldProjet from "./FormComponents/FieldProjet";
-import FieldSkill from "./FormComponents/FieldSkill";
-import FieldDone from "./FormComponents/FieldDone";
+import "./MultiStepForm.css";
+import ProgressBar from "../../components/FormComponents/ProgressBar";
+import FieldContact from "../../components/FormComponents/FieldContact";
+import FieldFormation from "../../components/FormComponents/FieldFormation";
+import FieldExperience from "../../components/FormComponents/FieldExperience";
+import FieldProjet from "../../components/FormComponents/FieldProjet";
+import FieldSkill from "../../components/FormComponents/FieldSkill";
+import FieldDone from "../../components/FormComponents/FieldDone";
 import userDataReducer, {
   initialState,
-} from "../initialStates/userInitialState";
+} from "../../initialStates/userInitialState";
 // import { useForm } from "react-hook-form";
 //import { yupResolver } from "@hookform/resolvers/yup";
 
@@ -23,6 +23,7 @@ const MultiStepForm: React.FC = () => {
 
   const [step, setStep] = useState<number>(1);
   const [selectedType, setSelectedType] = useState<string>("");
+  const [selectedRole, setSelectedRole] = useState<string>("");
   const [divCount, setDivCount] = useState<number>(1);
   // const { register } = useForm();
   const nextStep = () => {
@@ -55,6 +56,29 @@ const MultiStepForm: React.FC = () => {
       dispatch({ type: "UPDATE_FIELD", field: name, value: value });
     }
   };
+
+
+  const handleRoleChange = (event: ChangeEvent<HTMLSelectElement>) => {
+    setSelectedRole(event.target.value);
+
+    /****** handleChange() ******/
+    const { name, value } = event.target;
+
+    // Gérer les propriétés imbriquées
+    if (name.includes(".")) {
+      const [parent, child] = name.split(".");
+      dispatch({
+        type: "MODIFIER_IMBRIQUE",
+        parent: parent,
+        child: child,
+        value: value,
+      });
+    } else {
+      dispatch({ type: "UPDATE_FIELD", field: name, value: value });
+    }
+  };
+
+
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     console.log("HANDLESUBMIT appeleé");
@@ -156,6 +180,7 @@ const MultiStepForm: React.FC = () => {
 
       // Gérer la réponse réussie du backend
       console.log("Formulaire soumis avec succès !");
+      nextStep();
     } catch (error) {
       // Gérer les erreurs de soumission du formulaire
       console.error("error add: ",error.message);
@@ -169,6 +194,8 @@ const MultiStepForm: React.FC = () => {
         step={step}
         nextStep={nextStep}
         handleChange={handleChange}
+        handleRoleChange={handleRoleChange}
+        selectedRole={selectedRole}
         //errors={errors}
         handleFocus={handleFocus}
         focused={focused}
@@ -208,8 +235,9 @@ const MultiStepForm: React.FC = () => {
         nextStep={nextStep}
         prevStep={prevStep}
         handleChange={handleChange}
+        handleSubmit={handleSubmit}
       />
-      <FieldDone step={step} prevStep={prevStep} handleSubmit={handleSubmit} />
+      <FieldDone step={step} />
     </form>
   );
 };

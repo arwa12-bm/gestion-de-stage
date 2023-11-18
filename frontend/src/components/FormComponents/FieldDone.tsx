@@ -1,41 +1,24 @@
 import React from "react";
-// import "../../assets/MultiStepForm.css";
+import { useNavigate } from "react-router-dom";
 
-const Button = () => {
-  return (
-    <>
-      <input
-        type="submit"
-        name="envoyer"
-        id="blue"
-        className="envoyer action-button"
-      />
-      <label
-        htmlFor="blue"
-        style={{ "--color": "blue" } as React.CSSProperties}
-      >
-        Envoyer
-      </label>
-    </>
-  );
-};
 
-const FieldDone = ({ prevStep, step, handleSubmit }) => {
+const FieldDone = ({  step}) => {
+  const nav = useNavigate();
   return (
     <fieldset
       style={{ display: step === 6 ? "block" : "none" }}
-      onSubmit={handleSubmit}
+      
     >
       <h2 className="fs-title">Merci !</h2>
-      <h3 className="fs-subtitle">Demander maintenant && Bon courage </h3>
+      <h3 className="fs-subtitle">votre compte a été créé avec succès</h3>
       <input
         type="button"
         name="previous"
         className="previous action-button"
-        value="Précédent"
-        onClick={prevStep}
+        value="Se connecter"
+        onClick={()=>(nav('/'))}
       />
-      <Button />
+      
     </fieldset>
   );
 };

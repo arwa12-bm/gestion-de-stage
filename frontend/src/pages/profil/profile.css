@@ -2,10 +2,7 @@
     flex:4.5;
     padding: 0px;
     min-height: 100vh;
-  
-    
-   right:10px;
-    /* background: url(images/html_table.jpg) center / cover; */
+    right:10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -13,13 +10,10 @@
     position :absolute;
     top:0;
     left: 0;
-    right: 0;
-   
+    right: 0; 
 }
 .profileBody{
- padding:20px ;
-
- 
+    padding:20px ;
 }
 
 .profileRight{
@@ -31,8 +25,7 @@
     justify-content: center;
     position:absolute;
     top: 50px;
-   right:0;
-   
+    right:0;
     z-index: 1000;
 }
 
@@ -75,32 +68,29 @@
     
 }
 .profileDetails{
-   
+
     display: flex;
     flex-direction: column;
-   
-   padding: 2rem;
+    padding: 2rem;
     width: 95%;
     height: 240px;
     border-radius: 8px;
     margin-left: 20px;
     -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
     box-shadow: 0px 0px 14px -8px rgba(0, 0, 0, 0.68);
- background-color: rgb(252, 252, 252);
+    background-color: rgb(252, 252, 252);
 }
 .profileDetails2{
-   
     display: flex;
     flex-direction: column;
-   
-   padding: 2rem;
+    padding: 2rem;
     width: 95%;
-    height: 240px;
+    height: 280px;
     border-radius: 8px;
     margin-left: 20px;
     -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
     box-shadow: 0px 0px 14px -8px rgba(0, 0, 0, 0.68);
- background-color: rgb(252, 252, 252);
+    background-color: rgb(252, 252, 252);
 }
 
 .profileInfoName{
@@ -109,34 +99,32 @@
 
 .profileInfoDesc{
     font-weight: 300;
-   text-align: left;
-   
-
+    text-align: left;
 }
+
 .profileInfoTitle{
     font-size: 24px;
     font-weight: 300;
-   text-align: left;
-   display: flex;
-   padding-bottom: 10px;
+    text-align: left;
+    display: flex;
+    padding-bottom: 10px;
 }
+
 .phoneIcon {
     font-size: 20px !important;
     margin-left: 10px;
     
-  }
-  .ModifButton {
-    
-   
+    }
+
+.ModifButton {
     height: 30%;
-    
-   text-align:center;
-   margin-top:20px;
-   margin-bottom: 20px;
-   
-  background-color: rgb(194, 200, 206);
-  margin-left: 30px;
+    text-align:center;
+    margin-top:20px;
+    margin-bottom: 20px;
+    background-color: rgb(194, 200, 206);
+    margin-left: 30px;
 }
+
 .ModifButton2 {
     
     display:inline-block;
@@ -144,21 +132,19 @@
 	padding: auto;
     height: 80%;
     width: 20%;
-   text-align:center;
-  background-color: rgb(194, 200, 206);
- 
-  
+    text-align:center;
+    background-color: rgb(194, 200, 206);
 }
 
 .profileRightBottom{
-  
     flex-direction: column;
     display: flex;
-   position: absolute;
+    position: absolute;
     top: 100px;
     right: 0;
- width:200px
+    width:200px
 }
+
 .profilInput{
     height: 30px;
     outline: none;

@@ -174,28 +174,70 @@ export const get_satgiaire_accepte = async () => {
 };
 
 type User = {
-    id: number;
     name: string;
     email: string;
     password: string;
     phone: number;
-    role: "satagiaire" | "admin" | "encadreur";
+    role: string;
     status: string | null;
-    isAdmin: Boolean;
+    isAdmin: boolean;
+    formations?: {
+        niveau: string;
+        diplome: string;
+        date_fin: string;
+        date_debut: string;
+        specialite: string;
+        universite: string;
+    }[] | {}[];
+    experiences?: {
+        type: string;
+        societe: string;
+        "date-fin": string;
+        "date-debut": string;
+    }[] | {}[];
+    projets?: {
+        title: string;
+        language: string;
+        description: string;
+    }[] | {}[];
+    skill?: string;
+    file?: string;
 };
+
 
 export const add_user = async (user: User) => {
     try {
-        const sql = `INSERT INTO users(username, email, password, userphone, role, status, isadmin)
-        VALUES ('${user.name}', '${user.email}' , '${user.password}' , ${user.phone} , '${user.role}' , '${user.status}' , false );`;
+        // const sql = `INSERT INTO users(username, email, password, userphone, role, status, isadmin)
+        // VALUES ('${user.name}', '${user.email}' , '${user.password}' , ${user.phone} , '${user.role}' , '${user.status}' , false );`;
 
-        const result = await pool.query(sql, (error, response) => {
-            console.log("error message add user: ", error.message);
-            return response;
-        });
+        // const result = await pool.query(sql);
+        const sql = `
+        INSERT INTO users (username, email, userphone, formations, experiences, projets, skill, file, status, role,  isadmin, password)
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)
+    `;
+
+    const values = [
+        user.name,
+        user.email,
+        user.phone,
+        user.formations || [], // Assuming formations is an array, providing an empty array if not present
+        user.experiences || [], // Assuming experiences is an array, providing an empty array if not present
+        user.projets || [], // Assuming projets is an array, providing an empty array if not present
+        user.skill || "",
+        user.file || "",
+        user.status || "Demande en cours",
+        user.role || "",
+        user.isAdmin || false,
+        user.password || ""
+    ];
+
+    const result = await pool.query(sql, values);
+        console.log("Query result:", result);
+
         return result;
     } catch (error) {
-        console.error(error);
+        console.error("Error adding user:", error);
+        throw error;
     }
 };
 

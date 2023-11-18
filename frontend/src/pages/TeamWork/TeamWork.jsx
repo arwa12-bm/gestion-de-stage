@@ -3,7 +3,7 @@ import { MoreVert } from "@mui/icons-material";
 import Axios  from "axios";
 import jwt_decode from "jwt-decode";
 import { useState,useEffect } from "react";
-import NavigationMenuProfile from "../../components/AccueilComponents/NavigationProfile";
+import NavigationMenuProfile from "../../components/sidebar/NavigationProfile";
 import Header from '../../components/header/Header';
 
 export default function TeamWork() {

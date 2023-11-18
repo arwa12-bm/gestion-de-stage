@@ -6,8 +6,9 @@ import jwt_decode from "jwt-decode";
 export default function Header() {
 
 
-  const token =localStorage.getItem('token')
-	const user = jwt_decode(token);
+  const token: string | null = localStorage.getItem('token');
+const user: { id: number; username: string; email: string; role: string; userphone: string; post: string } = jwt_decode(token!);
+
 
   return (
     <div className="topbarContainer">
@@ -28,20 +29,7 @@ export default function Header() {
           <span className="topbarLink">Homepage</span>
           <span className="topbarLink">Timeline</span>
         </div>
-        <div className="topbarIcons">
-          {/* <div className="topbarIconItem">
-             <Person /> 
-            <span className="topbarIconBadge">1</span>
-          </div>
-          <div className="topbarIconItem">
-             <Chat /> 
-            <span className="topbarIconBadge">2</span>
-          </div>
-          <div className="topbarIconItem">
-            <Notifications /> 
-            <span className="topbarIconBadge">1</span>
-          </div> */}
-        </div>
+       
         <img src="src/assets/pers.jpg" alt="" className="topbarImg"/>
       </div> 
     </div>

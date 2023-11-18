@@ -1,9 +1,7 @@
 import React, { useState } from "react";
-import  "../../assets/Navigation.css";
+import  "./Navigation.css";
 import { HomeOutlined } from "@ant-design/icons";
-import jwt_decode from "jwt-decode";
 const NavigationMenuProfile: React.FC = () => {
- 
 
 	
   const [activeItem, setActiveItem] = useState<number | null>(null);
@@ -31,14 +29,9 @@ const NavigationMenuProfile: React.FC = () => {
   };
 
   const icons = ["", "../assets/Images/Icones/1.png", ""];
-  // const handleToggleClick = () => {
-  //   // toggle logic
-  // };
 
   return (
     <div>
-      {/* {<div className="toggle" onClick={handleToggleClick}>
-      </div>} */}
       <div className="navigation">
         <ul>
           {list.map((item, index) => (

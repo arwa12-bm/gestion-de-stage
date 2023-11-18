@@ -1,5 +1,4 @@
 import React from "react";
-// import "../../assets/MultiStepForm.css";
 // import { Form, Input } from "antd";
 
 interface FieldContactProps {
@@ -7,57 +6,31 @@ interface FieldContactProps {
   step: number;
   nextStep: () => void;
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  // errors: {
-  //   name?: boolean;
-  //   email?: boolean;
-  //   phone?: boolean;
-  // };
+  handleRoleChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   handleFocus: (e: React.FocusEvent<HTMLInputElement>) => void;
   focused: boolean;
+  selectedRole : string | undefined;
 }
+
 
 const FieldContact: React.FC<FieldContactProps> = (
   props: FieldContactProps
 ) => {
-  //console.log("CONSSOOOSOSL", props.errors);
+  
   return (
     <fieldset style={{ display: props.step === 1 ? "block" : "none" }}>
       <h2 className="fs-title">Contact</h2>
       <h3 className="fs-subtitle">Renforcez vos chances !</h3>
-      {/* <Form.Item
-        validateStatus={
-          props.focused === true || props.errors.name === true ? "error" : ""
-        }
-        help={
-          props.focused === true || props.errors.name === true
-            ? "Le nom doit contenir entre 3 et 30 caractères alphabétiques"
-            : null
-        }
-      > */}
-      {/* <Input */}
+
       <input
         type="text"
         name="name"
         placeholder="Nom Complet"
         onChange={props.handleChange}
-        // pattern="^[A-Za-z]{3,30}$"
-        // required
         onBlur={props.handleFocus}
-        // className={props.errors.name === true ? "error-massage" : ""}
+        
       />
-      {/* </Form.Item> */}
 
-      {/* <Form.Item
-        validateStatus={
-          props.focused === true || props.errors.email === true ? "error" : ""
-        }
-        help={
-          props.focused === true || props.errors.email === true
-            ? "Veuillez entrer votre email"
-            : ""
-        }
-      > */}
-      {/* <Input */}
       <input
         type="text"
         name="email"
@@ -65,18 +38,7 @@ const FieldContact: React.FC<FieldContactProps> = (
         onChange={props.handleChange}
         onBlur={props.handleFocus}
       />
-      {/* </Form.Item>
-      <Form.Item
-        validateStatus={
-          props.focused === true || props.errors.phone === true ? "error" : ""
-        }
-        help={
-          props.focused === true || props.errors.phone === true
-            ? "Veuillez entrer votre numero de telephone"
-            : ""
-        }
-      >
-        <Input */}
+
       <input
         type="number"
         name="phone"
@@ -84,22 +46,39 @@ const FieldContact: React.FC<FieldContactProps> = (
         onChange={props.handleChange}
         onBlur={props.handleFocus}
       />
-      {/* </Form.Item>
-      <Form.Item>
-        <Input */}
+      <input
+        type="password" 
+        required 
+        name="password"
+        placeholder="password"
+        onChange={props.handleChange}
+        onBlur={props.handleFocus}
+      />
+      
+  <select
+    name="Contact.Role"
+    value={props.selectedRole} // Corrected
+    onChange={props.handleRoleChange} // Corrected
+  >
+    <option value="" disabled hidden>
+      Role
+    </option>
+    <option value="Etudiant">Etudiant</option>
+    <option value="chomeur">chomeur</option>
+    <option value="Formateur">Formateur</option>
+    <option value="autre">Autre</option>
+  </select>
+
+        
       <input
         type="button"
         name="next"
-        // disabled={
-        //   Object.values(props.errors).length === 0
-        //     ? true
-        //     : Object.values(props.errors).some((error) => error)
-        // }
+      
         className="next action-button"
         value="Suivant"
         onClick={props.nextStep}
       />
-      {/* </Form.Item> */}
+
     </fieldset>
   );
 };

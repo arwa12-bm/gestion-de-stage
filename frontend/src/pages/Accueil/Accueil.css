@@ -32,86 +32,6 @@ body {
   width: 100%;
 }
 
-/* =============== Navigation ================ */
-/* .navigation {
-  position: fixed;
-  width: 300px;
-  height: 100%;
-  background: var(--blue);
-  border-left: 10px solid var(--blue);
-  transition: 0.5s;
-  overflow: hidden;
-}
-.navigation.active {
-  width: 80px;
-}
-
-.navigation ul {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-}
-
-.navigation ul li {
-  position: relative;
-  width: 100%;
-  list-style: none;
-  border-top-left-radius: 30px;
-  border-bottom-left-radius: 30px;
-}
-
-.navigation ul li:hover,
-.navigation ul li.hovered {
-  background-color: var(--white);
-}
-
-.navigation ul li:nth-child(1) {
-  margin-bottom: 40px;
-  pointer-events: none;
-}
-
-.navigation ul li a {
-  position: relative;
-  display: block;
-  width: 100%;
-  display: flex;
-  text-decoration: none;
-  color: var(--white);
-}
-.navigation ul li:hover a,
-.navigation ul li.hovered a {
-  color: var(--blue);
-}
-
-.navigation ul li a .icon {
-  position: relative;
-  display: block;
-  min-width: 60px;
-  height: 60px;
-  line-height: 55px;
-  text-align: center;
-}
-
-.navigation ul li a .title {
-  position: relative;
-  display: block;
-  padding: 0 10px;
-  height: 60px;
-  line-height: 60px;
-  text-align: start;
-  white-space: nowrap;
-} */
-
-/* ==================  List ============== */
-/* {
-  position: relative;
-  width: 100%;
-  padding: 20px;
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  grid-gap: 30px;
-} */
 
 .recentOrders {
   position: relative;
@@ -237,50 +157,11 @@ table thead td {
   font-weight: 500;
 }
 
-/* .effect {
-  color: var(--blue);
-}
-.effect::after,
-.effect::before {
-  content: "";
-  display: block;
-  position: absolute;
-  width: 20%;
-  height: 20%;
-  border: 2.5px solid;
-  transition: all 0.6s ease;
-  border-radius: 2px;
-}
 
-.effect::after {
-  bottom: 0;
-  right: 0;
-  border-top-color: transparent;
-  border-left-color: transparent;
-  border-bottom-color: var(--blue);
-  border-right-color: var(--blue);
-}
-
-.effect::before {
-  top: 0;
-  left: 0;
-  border-bottom-color: transparent;
-  border-right-color: transparent;
-  border-top-color: var(--blue);
-  border-left-color: var(--blue);
-}
-
-.effect:hover:after,
-.effect:hover:before {
-  border-bottom-color: var(--blue);
-  border-right-color: var(--blue);
-  border-top-color: var(--blue);
-  border-left-color: var(--blue);
-  width: 100%;
-  height: 100%;
-} */
-/* ====================== Responsive Design ========================== */
-@media (max-width: 991px) {
+@media (max-width: 700px) {
+  .profileRight{
+    width: 100%;
+  }
   .navigation {
     left: -300px;
   }
@@ -290,19 +171,12 @@ table thead td {
   }
 }
 
-/* @media (max-width: 768px) {
-   {
-    grid-template-columns: 1fr;
-  }
-  .recentOrders {
-    overflow-x: auto;
-  }
-  .inProgress {
-    white-space: nowrap;
-  }
-} */
 
-@media (max-width: 480px) {
+
+@media (max-width: 40px) {
+  .profileRight{
+    width: 100%;
+  }
   .navigation {
     width: 100%;
     left: -100%;

@@ -3,21 +3,7 @@ import {PermMedia, Label,Room, EmojiEmotions} from "@mui/icons-material";
 import { useState,useEffect } from "react";
 import jwt_decode from "jwt-decode";
 import axios from "axios";
-// {
-//   "title": "title test",
-//   "url": "url test",
-//   "photo": "src/assets/cov.jpeg",
-//   "type_post": "type test",
-//   "description": "test",
-//   "tag": null,
-//   "created_at": "2023-02-09T23:00:00.000Z",
-//   "commentaire": {
-//       "id": 1,
-//       "id_user": 3,
-//       "content": "test test test"
-//   },
-//   "id_user": 2
-// }
+
 export default function Share() {
 
   const [title,setTitle] = useState('')
@@ -55,11 +41,11 @@ export default function Share() {
     const date = new Date();
     console.log({ title,"url":"",photo,type_post,description,tag,"created_at":date.toLocaleDateString() ,"commentaire":{},"id_user":user.id });
   
-     await axios.post('http://localhost:5100/api/v2/insertpost',{ title,"url":"",photo,type_post,description,tag,"created_at":date.toLocaleDateString() ,"commentaire":{},"id_user":user.id } );
-     console.log("done")
-     window.location.reload();
-  };
-  
+      await axios.post('http://localhost:5100/api/v2/insertpost',{ title,"url":"",photo,type_post,description,tag,"created_at":date.toLocaleDateString() ,"commentaire":{},"id_user":user.id } );
+      console.log("done")
+      window.location.reload();
+    };
+    
 
   return (
     <div className="share">
