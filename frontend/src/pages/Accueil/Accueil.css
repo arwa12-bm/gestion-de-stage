@@ -39,106 +39,7 @@ body {
   width: 100%;
 }
 
-/* =============== Navigation ================ */
-.navigation {
-  font-family: "Playfair Display", serif;
-  position: fixed;
-  width: 300px;
-  height: 100%;
-  background: var(--blue);
-  border-left: 10px solid var(--blue);
-  transition: 0.5s;
-  overflow: hidden;
-}
-.navigation.active {
-  width: 80px;
-}
 
-.navigation ul {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-}
-
-.navigation ul li {
-  position: relative;
-  width: 100%;
-  list-style: none;
-  border-top-left-radius: 30px;
-  border-bottom-left-radius: 30px;
-}
-
-.navigation ul li:hover,
-.navigation ul li.hovered {
-  background-color: var(--white);
-}
-
-.navigation ul li:nth-child(1) {
-  margin-bottom: 40px;
-  pointer-events: none;
-}
-
-.navigation ul li a {
-  position: relative;
-  display: block;
-  width: 100%;
-  display: flex;
-  text-decoration: none;
-  color: var(--white);
-}
-.navigation ul li:hover a,
-.navigation ul li.hovered a {
-  color: var(--blue);
-}
-
-.navigation ul li a .icon {
-  position: relative;
-  display: block;
-  min-width: 60px;
-  height: 60px;
-  line-height: 55px;
-  text-align: center;
-}
-
-.navigation ul li a .title {
-  position: relative;
-  display: block;
-  padding: 0 10px;
-  height: 60px;
-  line-height: 60px;
-  text-align: start;
-  white-space: nowrap;
-}
-
-/* ==================  List ============== */
-
-.tabEncad {
-  font-family: "Playfair Display", serif;
-  position: relative;
-  display: grid;
-  min-height: 100px;
-  background: var(--white);
-  padding: 20px;
-  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
-  border-radius: 20px;
-  margin-top: 100px;
-  margin-left: 400px;
-  margin-right: 40px;
-}
-
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  padding: 15px;
-
-}
-
-.header h2 {
-  font-weight: 50;
-  color: var(--blue);
-}
 .recentOrders {
   font-family: "Playfair Display", serif;
   position: relative;
@@ -261,16 +162,11 @@ table thead td {
   font-weight: 500;
 }
 
-.addEncadrent {
-  position: relative;
-  padding: 5px 10px;
-  background: var(--blue);
-  text-decoration: none;
-  color: var(--white);
-  border-radius: 6px;
-}
-/* ====================== Responsive Design ========================== */
-@media (max-width: 991px) {
+
+@media (max-width: 700px) {
+  .profileRight{
+    width: 100%;
+  }
   .navigation {
     left: -300px;
   }
@@ -280,7 +176,12 @@ table thead td {
   }
 }
 
-@media (max-width: 480px) {
+
+
+@media (max-width: 40px) {
+  .profileRight{
+    width: 100%;
+  }
   .navigation {
     width: 100%;
     left: -100%;

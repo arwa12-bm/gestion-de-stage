@@ -212,35 +212,71 @@ interface UserInfo {
 }
 
 type User = {
-    id: number;
     name: string;
     email: string;
     password: string;
     phone: number;
-    role: "satagiaire" | "admin" | "encadreur";
+    role: string;
     status: string | null;
-    isAdmin: Boolean;
-    infor: UserInfo;
+    isAdmin: boolean;
+    formations?: {
+        niveau: string;
+        diplome: string;
+        date_fin: string;
+        date_debut: string;
+        specialite: string;
+        universite: string;
+    }[] | {}[];
+    experiences?: {
+        type: string;
+        societe: string;
+        "date-fin": string;
+        "date-debut": string;
+    }[] | {}[];
+    projets?: {
+        title: string;
+        language: string;
+        description: string;
+    }[] | {}[];
+    skill?: string;
+    file?: string;
 };
 
-export const add_user = async (user: User): Promise<any> => {
-    return new Promise((resolve, reject) => {
-        const sql = `INSERT INTO users(username, email, password, userphone, role, status, isadmin, infor)
-        VALUES ('${user.name}', '${user.email}' , '${user.password}' , ${
-            user.phone
-        } , '${user.role}' , '${user.status}' , ${
-            user.isAdmin
-        }, '${JSON.stringify(user.infor)}'::jsonb );`;
-        pool.query(sql, (error: Error, response: Response) => {
-            if (error) {
-                console.log("Error executing query (add_user):", error.message);
-                reject(error);
-            } else {
-                console.log("Query result:", "SUCCESS");
-                resolve(response);
-            }
-        });
-    });
+
+export const add_user = async (user: User) => {
+    try {
+        // const sql = `INSERT INTO users(username, email, password, userphone, role, status, isadmin)
+        // VALUES ('${user.name}', '${user.email}' , '${user.password}' , ${user.phone} , '${user.role}' , '${user.status}' , false );`;
+
+        // const result = await pool.query(sql);
+        const sql = `
+        INSERT INTO users (username, email, userphone, formations, experiences, projets, skill, file, status, role,  isadmin, password)
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)
+    `;
+
+    const values = [
+        user.name,
+        user.email,
+        user.phone,
+        user.formations || [], // Assuming formations is an array, providing an empty array if not present
+        user.experiences || [], // Assuming experiences is an array, providing an empty array if not present
+        user.projets || [], // Assuming projets is an array, providing an empty array if not present
+        user.skill || "",
+        user.file || "",
+        user.status || "Demande en cours",
+        user.role || "",
+        user.isAdmin || false,
+        user.password || ""
+    ];
+
+    const result = await pool.query(sql, values);
+        console.log("Query result:", result);
+
+        return result;
+    } catch (error) {
+        console.error("Error adding user:", error);
+        throw error;
+    }
 };
 
 export const delete_user = async (id: number): Promise<any> => {

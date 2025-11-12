@@ -5,10 +5,13 @@ const FieldSkill = ({
   prevStep,
   step,
   handleChange,
+  handleSubmit
 }) => {
   return (
     <fieldset
       style={{ display: step === 5 ? "block" : "none" }}
+      onSubmit={handleSubmit}
+      name="skill"
     >
       <h2 className="fs-title">Compétences</h2>
       <h3 className="fs-subtitle">Quoi d'autre ?</h3>
@@ -20,7 +23,7 @@ const FieldSkill = ({
         placeholder="Skills"
         onChange={handleChange}
       ></textarea>
-      <h3 className="fs-subtitle">Vos pièces à joindre :</h3>
+      <h3 className="fs-subtitle">Votre cv :</h3>
       <input
         type="file"
         name="file.cv"
@@ -28,7 +31,7 @@ const FieldSkill = ({
         onChange={handleChange}
         title="Votre CV"
       />
-      <input
+      {/* <input
         type="file"
         name="file.demande"
         onChange={handleChange}
@@ -45,14 +48,14 @@ const FieldSkill = ({
         name="file.insc"
         onChange={handleChange}
         title="Votre CARTE D'ETUDIANT "
-      />
+      /> 
       <input
         type="file"
         name="file.cin"
         onChange={handleChange}
         title="Votre CARTE CIN"
       />
-
+       */}
       <input
         type="button"
         name="previous"
@@ -62,10 +65,10 @@ const FieldSkill = ({
       />
       <input
         type="button"
-        name="next"
+        name="Envoyer"
         className="next action-button"
-        value="Suivant"
-        onClick={nextStep}
+        value="Envoyer"
+        onClick={handleSubmit}
       />
     </fieldset>
   );

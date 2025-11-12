@@ -1,22 +1,32 @@
 import React from "react";
-import Profile from "./pages/profil/profil";
-import Login from "./pages/login/login";
-
+import Profile from "./pages/profil/profil"
 //components
-import Accueil from "./components/Accueil";
-import FormCnx from "./components/FormCnx";
-import MultiStepForm from "./components/MultiStepForm";
-import { Routes, Route } from "react-router-dom";
+import Accueil from "./pages/Accueil/Accueil";
+import FormCnx from "./pages/login/FormCnx";
+import MultiStepForm from "./pages/MultiStepForm/MultiStepForm";
+import {  Routes, Route } from "react-router-dom";
+import Post from "./components/post/post";
+import FormCreateAcc from "./pages/login/FormCreateAcc";
+import TeamWork from "./pages/TeamWork/TeamWork";
+import AllTeamWork from "./pages/TeamWork/AllTeamWork";
+
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Login />} />
-      <Route path="/profile" element={<Profile />} />
-      <Route path="/stagiaires" element={<Accueil />} />
-      <Route path="/formCnx" element={<FormCnx />} />
-      <Route path="/form" element={<MultiStepForm />} />
-    </Routes>
+    
+      <Routes>
+        <Route path="/" element={< FormCnx/>}/>
+        <Route path="/profile" element={<Profile />}/>
+        <Route path="/post" element={<Post />}/>
+        <Route path="/TeamWork" element={<TeamWork />}/>
+        <Route path="/AllTeamWork" element={<AllTeamWork />}/>
+        <Route path="/FormCreateAcc" element={<FormCreateAcc/>}/>
+        <Route path="/stagiaires" element={<Accueil />} />
+        <Route path="/MultiStepForm" element={< MultiStepForm />}/>
+      </Routes>
+    
+    
   );
 }
+
 
 export default App;

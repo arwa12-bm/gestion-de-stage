@@ -7,9 +7,9 @@ export const initialState = {
   experiences: [],
   projets: [],
   skill: "",
-  file: {},
+  file: "",
   status: "Demande en cours",
-  role: "stagiaire",
+  role: "",
   isAdmin: false,
   password: "",
 };
