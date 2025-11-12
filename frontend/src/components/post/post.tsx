@@ -14,6 +14,7 @@ interface PostData {
   id: number;
   title: string;
   photo: string;
+  description: string;
   commentaire: Comment[];
 }
 interface UserProfile {
@@ -68,7 +69,7 @@ export default function Post(): JSX.Element {
   return (
     <div className="post">
       {postData.map((item) => (
-        <div className="postWrapper" key={item.id} onClick={() => viewPostHandler(item)}>
+        <div className="postWrapper" key={item.id} >
 
           
           <div className="postTop">
@@ -85,7 +86,9 @@ export default function Post(): JSX.Element {
             </div>
         </div>
         <div className="postCenter">
-            <span className="postText">{item.title}</span>
+            <span className="postText">{item.title}</span><br></br>
+            <span className="postText">{item.description}</span>
+
             <img className="postImg" src={item.photo} alt="" />
         </div>
           <div className="postBottom">
@@ -98,12 +101,12 @@ export default function Post(): JSX.Element {
               />
                 <span className="postLikeCounter">{like} people like it</span>
             </div>
-              <div className="postBottomRight">
+              <div className="postBottomRight" onClick={() => viewPostHandler(item)}>
               <span
                 className="postCommentText"
                 onClick={ commentHandler} 
               >
-                comments
+                comment
               </span>
             </div>
           </div>

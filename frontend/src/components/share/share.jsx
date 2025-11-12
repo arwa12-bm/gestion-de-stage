@@ -59,13 +59,13 @@ export default function Share() {
             <input id="title-input"
                     type="text" 
                     name="title" 
-                    placeholder="Title" 
+                    placeholder="Titre" 
                     value={title} 
                     onChange={handleChangeTitle}
                     className="shareInput"/>
             
               <input
-                placeholder="What's in your mind ?"
+                placeholder="Description "
                 value={description} 
                 onChange={handleChangeDescription}
                 className="shareInput" />
@@ -74,10 +74,10 @@ export default function Share() {
                       onChange={handleChangeType}
                       className="shareSelect"
                       placeholder= "Type of post" >
-                              <option >--Type of post--</option>
-                              <option >Materiel problem</option>
-                              <option >logiciel problem</option>
-                              
+                              <option >--Type de formation--</option>
+                              <option >Developpement logiciel</option>
+                              <option >Administration système et réseau</option>
+                              <option >Base de donnée</option>
                 </select>
                 {isClicked?
                 <div  className="Add">

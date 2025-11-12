@@ -12,12 +12,12 @@ const user: { id: number; username: string; email: string; role: string; userpho
 
   return (
     <div className="topbarContainer">
-       <div className="topbarLeft">
+        <div className="topbarLeft">
         <span className="logo">welcome {user.username}</span>
       </div>
       <div className="topbarCenter">
         <div className="searchbar">
-           <Search className="c" />
+          <Search className="c" />
           <input
             placeholder="Search for friend, post or video"
             className="searchInput"
@@ -25,11 +25,10 @@ const user: { id: number; username: string; email: string; role: string; userpho
         </div>
       </div>
       <div className="topbarRight">
-        <div className="topbarLinks">
-          <span className="topbarLink">Homepage</span>
-          <span className="topbarLink">Timeline</span>
-        </div>
-       
+          <div className="topbarLinks">
+          ***  {user.username}   ***
+          </div>
+        
         <img src="src/assets/pers.jpg" alt="" className="topbarImg"/>
       </div> 
     </div>

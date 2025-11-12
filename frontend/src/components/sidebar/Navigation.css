@@ -2,7 +2,6 @@
       flex: 2;
       display: flex;
       flex-direction: column;
-      
       height: 400%;
       width: 20%;
       background:var(--blueciel) ;
@@ -22,7 +21,7 @@
     
     .navigation ul li {
       position: relative;
-      height:10%;
+      height:30%;
       width: 100%;
       list-style: none;
       border-top-left-radius: 30px;
@@ -32,6 +31,7 @@
     .navigation ul li:hover,
     .navigation ul li.hovered {
       background-color: var(--white);
+
     }
     
     .navigation ul li:nth-child(0) {

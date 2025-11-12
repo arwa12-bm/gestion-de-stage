@@ -33,6 +33,7 @@
     "react-redux": "^8.1.0",
     "react-router-dom": "^6.13.0",
     "redux": "^4.2.1",
+    "scikit-learn": "^0.1.0",
     "styled-components": "^6.0.0-rc.3",
     "yarn": "^1.22.19",
     "yup": "^1.2.0"

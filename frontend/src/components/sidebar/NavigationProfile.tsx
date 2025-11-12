@@ -1,29 +1,26 @@
 import React, { useState } from "react";
 import  "./Navigation.css";
-import { HomeOutlined } from "@ant-design/icons";
+import { HomeOutlined ,UserOutlined,ProfileOutlined,FilterOutlined ,LogoutOutlined} from "@ant-design/icons";
+
 const NavigationMenuProfile: React.FC = () => {
 
 	
   const [activeItem, setActiveItem] = useState<number | null>(null);
   const list = [
-    "Name",
+    "Nom",
+    "Profile",
     "Accueil",
-    "Profil",
-    "Encadrents",
-    "Messages",
-    "TeamWork",
-    "Deconnexion",
+    "Publication",
+    "déconnection",
   ];
   const listHref = [
     "",
-    "/stagiaires",
     "/Profile",
-    "/CreateAccount",
-    "/Messages",
+    "/AllTeamWork",
     "/TeamWork",
     "/",
   ];
-  const listIcon = [<></>, <HomeOutlined />];
+  const listIcon = [<UserOutlined />,<ProfileOutlined />, <HomeOutlined />,<FilterOutlined />,<LogoutOutlined />];
   const handleMouseOver = (index: number) => {
     setActiveItem(index);
   };

@@ -9,6 +9,7 @@ import {  Routes, Route } from "react-router-dom";
 import Post from "./components/post/post";
 import FormCreateAcc from "./pages/login/FormCreateAcc";
 import TeamWork from "./pages/TeamWork/TeamWork";
+import AllTeamWork from "./pages/TeamWork/AllTeamWork";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/profile" element={<Profile />}/>
         <Route path="/post" element={<Post />}/>
         <Route path="/TeamWork" element={<TeamWork />}/>
+        <Route path="/AllTeamWork" element={<AllTeamWork />}/>
         <Route path="/FormCreateAcc" element={<FormCreateAcc/>}/>
         <Route path="/stagiaires" element={<Accueil />} />
         <Route path="/MultiStepForm" element={< MultiStepForm />}/>

@@ -86,7 +86,7 @@ const FormCnx = () => {
         <form onSubmit={handleSubmit}>
         {errors.email   && <p className="error">{errors.email}</p>}
               <input
-                placeholder="Enter your email"
+                placeholder="Entrer votre email"
                 type="email"
                 required
                 value={email}
@@ -99,7 +99,7 @@ const FormCnx = () => {
               />
               <input
                 id="input"
-                placeholder="Enter your password"
+                placeholder="Entrer votre mot de passe"
                 type="password"
                 required
                 value={password}
@@ -115,13 +115,13 @@ const FormCnx = () => {
           type="submit"
           name="connexion"
           className="connexion action-button"
-          value="Connecter"
+          value=" Se Connecter"
         />
           <input
           type="button"
           name="connexion"
           className="connexion action-button"
-          value="Creer un compte"
+          value="Créer un compte"
           onClick={() => ( nav ('/MultiStepForm'))}
         />
         </div>

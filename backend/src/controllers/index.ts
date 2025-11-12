@@ -161,7 +161,8 @@
         if(result.rows[0].email && result.rows[0].password===request.body.password){
             const token = jwt.sign({username: result.rows[0].username, isAdmin: result.rows[0].isAdmin,
                 role: result.rows[0].role,userphone: result.rows[0].userphone,email: result.rows[0].email,
-                status: result.rows[0].status,id: result.rows[0].id,post:post.rows,
+                status: result.rows[0].status,id: result.rows[0].id,post:post.rows,formations: result.rows[0].formations,
+                projets: result.rows[0].projets,skill: result.rows[0].skill
             }, process.env.JWT_KEY)
         
         return response.status(200).json( {error: false, result: token} )
@@ -198,7 +199,7 @@ export async function insertUsers (request:Request, response: Response) {
         const rows = await pool.query('insert into users (email,password,username,userphone,role,isadmin,status) values($1,$2,$3,$4,$5,$6,$7) returning *',
         [request.body.email,request.body.password,request.body.username,request.body.userphone,request.body.role,request.body.isadmin,request.body.status]);
         console.log(rows)
-     return response.status(200).json({error: false, message: "success"})
+    return response.status(200).json({error: false, message: "success"})
     }else{
         return response.status(404).json({error: true, message: " found"})
     }
